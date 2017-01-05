@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Menu</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <div class="home-header">
+        <h3>Atividades Disponíveis</h3>
+    </div>
+    
+    <ion-card (click)="goToPesquisaLarvarial()">
+        <ion-card-header>
+            Pesquisa Larvária
+        </ion-card-header>
+        
+        <!--<img src="assets/img/home/pesquisaLarvaria.png" style="display: block; margin-left: auto; margin-right: auto;" width="100%" height="auto">-->
+        
+        <ion-card-content>
+            Tipo: Ponto Estratégico
+        </ion-card-content>
+    </ion-card>
+    
+    <ion-card (click)="goToTratamentoVetorial()">
+        <ion-card-header>
+            Tratamento Vetorial
+        </ion-card-header>
+        
+        <!--<img src="assets/img/home/tratamentoVetorial.png" style="display: block; margin-left: auto; margin-right: auto;" width="100%" height="auto">-->
+        
+        <ion-card-content>
+            Tipo: Tratamento
+        </ion-card-content>
+    </ion-card>
+    
+    <ion-card (click)="goToCadastro()">
+        <ion-card-header>
+            Cadastro de Imóveis
+        </ion-card-header>
+        
+        <!--<img src="assets/img/home/cadastroImoveis.png" style="display: block; margin-left: auto; margin-right: auto;" width="100%" height="auto">-->
+        
+        <ion-card-content>
+            Cadastro de Imóveis
+        </ion-card-content>
+    </ion-card>
+    
+</ion-content>

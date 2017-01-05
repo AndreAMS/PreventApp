@@ -1,0 +1,56 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 04/01/2017, 11:07:36
+    Author     : MarceloMacedo
+*/
+
+.lgn_Container {
+    background-color: rgb(99, 214, 199);
+    max-width: 400px;
+    text-align: center;
+    height: 100%;
+}
+
+.lgn_LogoContainer {
+    padding: 20px 0px;
+}
+
+.lgn_LogoContainer img {
+    display: block;
+    margin: 0 auto;
+    width: 40%;
+}
+
+.lgn_Button {
+    font-size: 20pt;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.item-md {
+    background-color: transparent;
+}
+
+.lgn_Container input {
+    font-size: 15pt;
+    color: #fff;
+}
+
+.lgn_Container input ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #fff;
+}
+.lgn_Container input :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:     #fff;
+   opacity:  1;
+}
+.lgn_Container input ::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:     #fff;
+   opacity:  1;
+}
+.lgn_Container input :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #fff;
+}

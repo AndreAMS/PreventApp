@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Menu</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="dashboard cadastroImoveis">
+        <div class="titulo">Cadastro de Imóveis</div>
+    </div>
+    <form id="cadastroImoveis-form3" class="list">
+        <label class="item item-input item-stacked-label" id="cadastroImoveis-input4" name="regiao">
+            <span class="input-label">Região</span>
+            <input placeholder="Ex (Centro)" type="text">
+        </label>
+        <label class="item item-input item-stacked-label" id="cadastroImoveis-input5" name="bairro">
+            <span class="input-label">Bairro</span>
+            <input placeholder="Bairro" type="text">
+        </label>
+        <label class="item item-input item-stacked-label" id="cadastroImoveis-input6" name="responsavel">
+            <span class="input-label">Responsavel</span>
+            <input placeholder="Nome do Responsável" type="text">
+        </label>
+        <label class="item item-input item-stacked-label" id="cadastroImoveis-input7">
+            <span class="input-label">Contato</span>
+            <input placeholder="Telefone" type="tel">
+        </label>
+        <ion-radio id="cadastroImoveis-radio2">Tipo Imovel</ion-radio>
+    </form>
+    <div class="spacer" style="width: 283px; height: 53px;"></div>
+    <form id="cadastroImoveis-form4" class="list">
+        <label class="item item-input item-stacked-label" id="cadastroImoveis-input8" name="codetiqueta">
+            <span class="input-label">Cod Etiqueta</span>
+            <input placeholder="Codigo Etiqueta" type="text">
+        </label>
+    </form>
+    <button id="cadastroImoveis-button7" class="button button-stable  button-block icon ion-qr-scanner"> Escanear Etiqueta</button>
+    <div id="cadastroImoveis-button-bar2" class="button-bar">
+        <button id="cadastroImoveis-button9" class="button button-balanced  button-block button-outline icon ion-android-checkmark-circle">Salvar</button>
+        <a ui-sref="menu" id="cadastroImoveis-button10" class="button button-energized  button-block button-outline icon ion-eye-disabled">Cancelar</a>
+    </div>
+</ion-content>
