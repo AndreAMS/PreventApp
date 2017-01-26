@@ -16,7 +16,7 @@ import { TratamentoVetorialPage } from '../pages/tratamentoVetorial/tratamentoVe
     LoginPage,
     PesquisaLarvarialPage,
     CadastroImoveisPage,
-    TratamentoVetorialPage
+    TratamentoVetorialPage    
   ],
   imports: [
     IonicModule.forRoot(MyApp)

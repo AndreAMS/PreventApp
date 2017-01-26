@@ -1,50 +1,75 @@
-import { Component, Injectable } from '@angular/core';
-import { SQLite } from 'ionic-native';
-import { IUser } from '../models/user.model';
+import {Injectable} from '@angular/core';
+import {SQLite} from 'ionic-native';
+import {IUser} from '../models/user.model';
+import {Http, Response} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
+import {ConfigDao} from '../dao/config.dao';
 
 @Injectable()
 export class AuthDao {
 
-    public db: SQLite;
-    private _user: IUser;
+  public db: SQLite;
+  private _user: IUser;
 
-    constructor() {
+  constructor(public _http: Http, private _configDao: ConfigDao) {
+    this.db = _configDao.getDb();
+  }
 
-    }
-    
-    public getToken(user: IUser): string {        
-        this._user = user;
-        
-        return this.UserToken();
-    }
-    
-    private UserToken(): string
-    {
-        var retorno: string;
-        
-        retorno = this.CheckDatabase();
-        
-        if (retorno === null)
-        {
-            retorno = this.RequestServerUserToken();
-        }        
-        
-        // Remover
-        retorno = "9840810941809";
-        
-        return retorno;
-    }
-    
-    private CheckDatabase(): string
-    {
-        // Procura o token no banco de dados
-        return null;
-    }
-    
-    private RequestServerUserToken(): string
-    {
-        // Não autenticou ainda na App, pedir pro Servidor
-        return null;
-    }   
+  public get(): IUser {
+
+    this.db.executeSql("SELECT * FROM authentication", []).then((data) => {
+      let user = [];
+      if (data.rows.length > 0) {
+        for (let i = 0; i < data.rows.length; i++) {
+          user.push({
+            id: data.rows.item(i).id,
+            username: data.rows.item(i).username,
+            token: data.rows.item(i).token
+          });
+        }
+
+        return user;
+      }
+    }, (error) => {
+
+    });
+
+    return null;
+    /*
+     return new Promise((resolve, reject) => {
+     this.db.executeSql("SELECT * FROM authentication", []).then((data) => {
+     let user = [];
+     if (data.rows.length > 0) {
+     for (let i = 0; i < data.rows.length; i++) {
+     user.push({
+     id: data.rows.item(i).id,
+     username: data.rows.item(i).username,
+     token: data.rows.item(i).token
+     });
+     }
+     }
+     resolve(user);
+     }, (error) => {
+     reject(error);
+     });
+     });*/
+
+  }
+
+  public create(_user: IUser) {
+
+    return new Promise((resolve, reject) => {
+      this.db.executeSql("INSERT INTO people (username, token) VALUES (?, ?)", [_user.username, _user.token]).then((data) => {
+        resolve(data);
+      }, (error) => {
+        reject(error);
+      });
+    });
+
+  }
 
 }

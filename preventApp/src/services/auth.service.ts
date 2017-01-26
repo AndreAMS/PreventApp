@@ -1,24 +1,63 @@
-import { Component, Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { IUser } from '../models/user.model';
+import {Component, Injectable} from '@angular/core';
+import {Http, Response} from '@angular/http';
+import {IUser} from '../models/user.model';
+import {AuthDao} from '../dao/auth.dao';
+import {Observable} from 'rxjs/Observable';
 
-@Injectable()
+@Component({
+  providers: [AuthDao]
+})
 export class AuthService {
-    
-    constructor(private _http: Http) {
 
-    }
-    
-    public authUser(user: IUser): Boolean {
+  private _user: IUser;
 
-        // Buscar na DAO as informações o token da tabela auth, se não existir buscar no server.
-        //var token = this._authDao.getToken(user);
-        var token = "9824091840";
-        
-        if (token === null)
-            return false;
-        else
-            return true;
+  constructor(private _http: Http, private _authDao: AuthDao) {
+
+  }
+
+  public authUser(user: IUser): Boolean {
+
+    this._user = user;
+
+    var token = this.requestUserToken();
+
+    if (token === null)
+      return false;
+    else
+      return true;
+  }
+
+  private requestUserToken(): string {
+      
+    return "user";
+
+    /*this.CheckDatabase();
+
+    if (this._user.token === null) {
+      var user = this.RequestServerUser();
+
+      this._authDao.create(user);
+
+      return "user";
     }
-    
+
+    return this._user.token;*/
+  }
+
+  private CheckDatabase(): IUser {
+    return this._authDao.get();
+  }
+
+  private RequestServerUser(): IUser {
+
+    let user: IUser;
+
+    this._http.get('mock/userAuth.json')
+      .map((response: Response) => user = <IUser>JSON.parse(response.json()));
+    ;
+
+    return user;
+  }
+
+
 }
