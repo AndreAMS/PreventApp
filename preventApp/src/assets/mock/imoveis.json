@@ -1,9 +1,74 @@
 [
     {
-        "Regiao": "",
-        "Bairro": "",
-        "Responsavel": "",
-        "Contato": "",
-        "CodEtiqueta": ""
+        "Codigo": "1",
+        "Logradouro": "Rua das Orquideas",
+        "Numero": "103",
+        "Complemento": "Casa",
+        "Responsavel": "Latrel Albino",
+        "Telefone": "14 36412835",
+        "BairroId": "1"
+    },
+    {
+        "Codigo": "2",
+        "Logradouro": "Rua das Testes",
+        "Numero": "102",
+        "Complemento": "Casa",
+        "Responsavel": "Sasha Albina",
+        "Telefone": "14 36412835",
+        "BairroId": "1"
+    },
+    {
+        "Codigo": "3",
+        "Logradouro": "Rua das Amigos",
+        "Numero": "100",
+        "Complemento": "Casa",
+        "Responsavel": "Fufu Albino",
+        "Telefone": "14 36412835",
+        "BairroId": "1"
+    },
+    {
+        "Codigo": "4",
+        "Logradouro": "Rua das Bares",
+        "Numero": "44",
+        "Complemento": "Casa",
+        "Responsavel": "Armstrong Albino",
+        "Telefone": "14 36412835",
+        "BairroId": "1"
+    },
+    {
+        "Codigo": "5",
+        "Logradouro": "Rua das Celulares",
+        "Numero": "52",
+        "Complemento": "Casa",
+        "Responsavel": "Paulo Albino",
+        "Telefone": "14 36412835",
+        "BairroId": "2"
+    },
+    {
+        "Codigo": "6",
+        "Logradouro": "Rua das Batman",
+        "Numero": "54",
+        "Complemento": "Casa",
+        "Responsavel": "Robson Albino",
+        "Telefone": "14 36412835",
+        "BairroId": "2"
+    },
+    {
+        "Codigo": "7",
+        "Logradouro": "Rua das Robin",
+        "Numero": "99",
+        "Complemento": "Casa",
+        "Responsavel": "Bruno Albino",
+        "Telefone": "14 36412835",
+        "BairroId": "2"
+    },
+    {
+        "Codigo": "8",
+        "Logradouro": "Rua das Gallinhas",
+        "Numero": "8",
+        "Complemento": "Casa",
+        "Responsavel": "Daniel Albino",
+        "Telefone": "14 36412835",
+        "BairroId": "2"
     }
 ]

@@ -11,9 +11,11 @@ import { AuthService } from '../services/auth.service';
 import { SyncService } from '../services/sync.service';
 import { RegiaoService } from '../services/regiao.service';
 import { BairroService } from '../services/bairro.service';
+import { ImovelService } from '../services/imoveis.service';
 import { UserDAO } from '../dao/user.dao';
 import { RegiaoDAO } from '../dao/regiao.dao';
 import { BairroDAO } from '../dao/bairro.dao';
+import { ImovelDAO } from '../dao/imoveis.dao';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,6 @@ import { BairroDAO } from '../dao/bairro.dao';
     CadastroImoveisPage,
     TratamentoVetorialPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, UserDAO, RegiaoDAO, BairroDAO, SyncService, RegiaoService, BairroService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, UserDAO, RegiaoDAO, BairroDAO, SyncService, RegiaoService, BairroService, ImovelService, ImovelDAO]
 })
 export class AppModule {}
