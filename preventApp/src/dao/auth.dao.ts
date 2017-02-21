@@ -60,16 +60,13 @@ export class AuthDao {
 
   }
 
-  public create(_user: IUser) {
+  public create(_user: IUser): IUser {
 
-    return new Promise((resolve, reject) => {
-      this.db.executeSql("INSERT INTO people (username, token) VALUES (?, ?)", [_user.username, _user.token]).then((data) => {
-        resolve(data);
-      }, (error) => {
-        reject(error);
-      });
-    });
+    this.db.transaction(tr => { 
+      tr.executeSql("INSERT INTO people (username, token) VALUES (?, ?)", [_user.username, "teste"]); })
+        .then(d => { console.log('Data inserted ya hima'); }, err => { console.error(err); });
 
-  }
+      return null;
+  };
 
 }

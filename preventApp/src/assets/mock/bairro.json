@@ -1,0 +1,62 @@
+[
+    {
+        "Codigo": 1,
+        "Nome": "Centro",
+        "Regiao": 1
+    },
+    {
+        "Codigo": 2,
+        "Nome": "Residencial Alto da Colina",
+        "Regiao": 1
+    },
+    {
+        "Codigo": 3,
+        "Nome": "Colméia I",
+        "Regiao": 2
+    },
+    {
+        "Codigo": 4,
+        "Nome": "Colméia II",
+        "Regiao": 2
+    },
+    {
+        "Codigo": 5,
+        "Nome": "Residencial Colina",
+        "Regiao": 3
+    },
+    {
+        "Codigo": 6,
+        "Nome": "Jardim Nova Guaxupé",
+        "Regiao": 3
+    },
+    {
+        "Codigo": 7,
+        "Nome": "Vila Santo Antônio",
+        "Regiao": 4
+    },
+    {
+        "Codigo": 8,
+        "Nome": "Vila Magalhães",
+        "Regiao": 4
+    },
+    {
+        "Codigo": 9,
+        "Nome": "Chácaras Flor do Estado",
+        "Regiao": 5
+    },
+    {
+        "Codigo": 10,
+        "Nome": "Bairro Bela Vista",
+        "Regiao": 5
+    },
+    {
+        "Codigo": 11,
+        "Nome": "Residencial Aroeira I",
+        "Regiao": 6
+    },
+    {
+        "Codigo": 12,
+        "Nome": "Residencial Aroeira II",
+        "Regiao": 6
+    }
+]

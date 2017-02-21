@@ -1,0 +1,26 @@
+[
+    {
+        "Codigo": 1,
+        "Nome": "Centro"
+    },
+    {
+        "Codigo": 2,
+        "Nome": "Norte Guaxupé"
+    },
+    {
+        "Codigo": 3,
+        "Nome": "Nordeste Guaxupé"
+    },
+    {
+        "Codigo": 4,
+        "Nome": "Sul Guaxupé"
+    },
+    {
+        "Codigo": 5,
+        "Nome": "Leste Guaxupé"
+    },
+    {
+        "Codigo": 6,
+        "Nome": "Oeste Guaxupé"
+    }
+]

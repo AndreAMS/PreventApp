@@ -5,7 +5,58 @@
 </ion-header>
 
 <ion-content>
-    <div class="dashboard cadastroImoveis">
+    <ion-card>
+        <ion-card-header>
+            Cadastro de Imoveis
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-list>
+                <ion-item>
+                    <ion-label>Região</ion-label>
+                    <ion-select [(ngModel)]="regioes2" (ngModelChange)="loadBairro($event)">
+                        <ion-option *ngFor="let r of regioes" [value]="r.Codigo">{{r.Nome}}</ion-option>
+                    </ion-select>
+                </ion-item>
+            </ion-list>
+
+            <ion-list>
+                <ion-item>
+                    <ion-label>Bairros</ion-label>
+                    <ion-select [(ngModel)]="bairros2">
+                        <ion-option *ngFor="let b of bairros" [value]="b.Codigo">{{b.Nome}}</ion-option>
+                    </ion-select>
+                </ion-item>
+            </ion-list>
+
+            <ion-list>
+                <ion-item>
+                    <ion-label floating>Logradouro</ion-label>
+                    <ion-input type="text" value=""></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>Número</ion-label>
+                    <ion-input type="text"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>Complemento</ion-label>
+                    <ion-input type="text"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>Responsavel</ion-label>
+                    <ion-input type="text"></ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>Telefone</ion-label>
+                    <ion-input type="number"></ion-input>
+                </ion-item>
+
+                <button ion-button full>Cadastrar</button>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+    <!--<div class="dashboard cadastroImoveis">
         <div class="titulo">Cadastro de Imóveis</div>
     </div>
     <form id="cadastroImoveis-form3" class="list">
@@ -38,5 +89,5 @@
     <div id="cadastroImoveis-button-bar2" class="button-bar">
         <button id="cadastroImoveis-button9" class="button button-balanced  button-block button-outline icon ion-android-checkmark-circle">Salvar</button>
         <a ui-sref="menu" id="cadastroImoveis-button10" class="button button-energized  button-block button-outline icon ion-eye-disabled">Cancelar</a>
-    </div>
+    </div>-->
 </ion-content>

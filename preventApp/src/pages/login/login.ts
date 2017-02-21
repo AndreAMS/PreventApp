@@ -27,8 +27,10 @@ export class LoginPage {
     }
 
     logar() {
+
+        this.navCtrl.push(HomePage);
         
-        var usuario: IUser = {
+        /*var usuario: IUser = {
             id: 0,
             username: this._todo.value.user,
             password: this._todo.value.password,
@@ -42,7 +44,7 @@ export class LoginPage {
         else
         {
             // Falha na Authenticacao, retornar erro na tela de login
-        }        
+        }       */
         
     }
 }

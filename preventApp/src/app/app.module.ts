@@ -7,6 +7,13 @@ import { LoginPage } from '../pages/login/login';
 import { PesquisaLarvarialPage } from '../pages/pesquisaLarvarial/pesquisaLarvarial';
 import { CadastroImoveisPage } from '../pages/cadastroImoveis/cadastroImoveis';
 import { TratamentoVetorialPage } from '../pages/tratamentoVetorial/tratamentoVetorial';
+import { AuthService } from '../services/auth.service';
+import { SyncService } from '../services/sync.service';
+import { RegiaoService } from '../services/regiao.service';
+import { BairroService } from '../services/bairro.service';
+import { UserDAO } from '../dao/user.dao';
+import { RegiaoDAO } from '../dao/regiao.dao';
+import { BairroDAO } from '../dao/bairro.dao';
 
 @NgModule({
   declarations: [
@@ -31,6 +38,6 @@ import { TratamentoVetorialPage } from '../pages/tratamentoVetorial/tratamentoVe
     CadastroImoveisPage,
     TratamentoVetorialPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, UserDAO, RegiaoDAO, BairroDAO, SyncService, RegiaoService, BairroService]
 })
 export class AppModule {}
