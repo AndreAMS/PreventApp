@@ -25,10 +25,38 @@ export class ImovelDAO {
     }
 
     clean() {
-        PouchDB.destroy('imoveis').then(function () {
-            this._db = new PouchDB('imoveis');
-            this._db.post();
-        });
+        return this._db.allDocs({ include_docs: true })
+            .then(docs => {
+
+                this._imoveis = docs.rows.map(row => {
+                    return row.doc;
+                });
+
+                this._db.changes({ live: true, since: 'now', include_docs: true })
+                    .on('change', this.onDatabaseChange);
+
+                this._imoveis.forEach(element => {
+                    this.delete(element);
+                });
+            });
+    }
+
+    getById(codigo) {
+        
+        return this._db.allDocs({ include_docs: true })
+            .then(docs => {
+                this._imoveis = docs.rows.map(row => {
+                    row.doc.Date = new Date(row.doc.Date);
+                    
+                    return row.doc;
+                });
+
+                this._db.changes({ live: true, since: 'now', include_docs: true })
+                    .on('change', this.onDatabaseChange);
+
+                return this._imoveis.filter(item => item.Codigo === codigo);
+            });
+
     }
 
     getByBairro(bairroId) {

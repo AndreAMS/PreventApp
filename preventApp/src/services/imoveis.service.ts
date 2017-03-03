@@ -33,8 +33,10 @@ export class ImovelService {
             let imoveis: IImovel[];
             imoveis = <IImovel[]>data;
 
+            //this._imovelDAO.clean();
+
             for (var imovel of imoveis) {
-                //this._imovelDAO.add(imovel);
+                this._imovelDAO.add(imovel);
             }
 
         });

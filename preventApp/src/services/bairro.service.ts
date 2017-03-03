@@ -32,10 +32,12 @@ export class BairroService {
 
       let bairros: IBairro[];
       bairros = <IBairro[]>data;
+
+      //this._bairroDAO.clean();
       
       for (var bairro of bairros)
       {
-         //this._bairroDAO.add(bairro);
+         this._bairroDAO.add(bairro);
       }
 
     });

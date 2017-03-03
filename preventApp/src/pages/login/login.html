@@ -1,29 +1,31 @@
 <ion-content>
     <div class="lgn_Container">
-        <div class="lgn_LogoContainer">
-            <img src="assets/img/login/logo.png" alt="">
-        </div>
-        <div>
-            <form [formGroup]="_todo" (ngSubmit)="logar()">
-                <ion-item>
-                    <ion-input type="text" placeholder="Usuário" formControlName="user"></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-input type="password" placeholder="Senha" formControlName="password"></ion-input>
-                </ion-item>
+        <div class="lgn_Area">
+            <div class="lgn_LogoContainer">
+                <img src="assets/img/login/logo.png" alt="">
+            </div>
+            <div class="lgn_Form">
+                <!--<form [formGroup]="_todo" (ngSubmit)="logar()">
+                    <ion-item>
+                        <ion-input type="text" placeholder="Usuário" formControlName="user"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input type="password" placeholder="Senha" formControlName="password"></ion-input>
+                    </ion-item>
 
-                <button class="lgn_Button" type="submit" ion-button round outline>Entrar</button>
-            </form>
-           <!-- <form [formGroup]="_todo" (ngSubmit)="logar()">
-                <ion-item>
-                    <ion-input type="email" required placeholder="Usuário" formControlName="user"></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-input type="password" required  placeholder="Senha" formControlName="password"></ion-input>
-                </ion-item>
+                    <button class="lgn_Button" type="submit" ion-button round outline>Entrar</button>
+                </form>-->
+                <form [formGroup]="_todo" (ngSubmit)="logar()">
+                    <ion-item>
+                        <ion-input type="email" required placeholder="Usuário" formControlName="user"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input type="password" required  placeholder="Senha" formControlName="password"></ion-input>
+                    </ion-item>
 
-                <button class="lgn_Button" type="submit" ion-button round outline>Entrar</button>
-            </form>-->
+                    <button class="lgn_Button" type="submit" ion-button>Entrar</button>
+                </form>
+            </div>
         </div>
     </div>
 </ion-content>

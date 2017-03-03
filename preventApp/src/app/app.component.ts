@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-//import { LoginPage } from '../pages/login/login';
+import { LoginPage } from '../pages/login/login';
 import { ConfigDao } from '../dao/config.dao'
 import { HomePage } from '../pages/home/home';
 
@@ -11,7 +11,7 @@ import { HomePage } from '../pages/home/home';
     providers: [ConfigDao]
 })
 export class MyApp {
-    rootPage: any = HomePage;
+    rootPage: any = LoginPage;
 
     constructor(platform: Platform,
                 private _configDao: ConfigDao) {

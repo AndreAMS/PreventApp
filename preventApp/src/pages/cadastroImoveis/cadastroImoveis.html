@@ -11,83 +11,62 @@
         </ion-card-header>
 
         <ion-card-content>
-            <ion-list>
-                <ion-item>
-                    <ion-label>Região</ion-label>
-                    <ion-select [(ngModel)]="regioes2" (ngModelChange)="loadBairro($event)">
-                        <ion-option *ngFor="let r of regioes" [value]="r.Codigo">{{r.Nome}}</ion-option>
-                    </ion-select>
-                </ion-item>
-            </ion-list>
+            <form (ngSubmit)="cadastrar()" *ngIf="imovel">
+                <ion-list>
+                     <ion-item>
+                        <div>
+                            <button ion-button (click)="escanearCodigo()" full color="secondary">
+                                <ion-icon ios="ios-barcode" md="md-barcode"></ion-icon>
+                                Escanear Código
+                            </button>
+                        </div>
+                    </ion-item>
+                </ion-list>
 
-            <ion-list>
-                <ion-item>
-                    <ion-label>Bairros</ion-label>
-                    <ion-select [(ngModel)]="bairros2">
-                        <ion-option *ngFor="let b of bairros" [value]="b.Codigo">{{b.Nome}}</ion-option>
-                    </ion-select>
-                </ion-item>
-            </ion-list>
+                <ion-list>
+                    <ion-item>
+                        <ion-label>Região</ion-label>
+                        <ion-select  [(ngModel)]="imovel.regioes" (ngModelChange)="loadBairro($event)" name="regiao">
+                            <ion-option required *ngFor="let r of regioes" [value]="r.Codigo">{{r.Nome}}</ion-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-list>
 
-            <ion-list>
-                <ion-item>
-                    <ion-label floating>Logradouro</ion-label>
-                    <ion-input type="text" value=""></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label floating>Número</ion-label>
-                    <ion-input type="text"></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label floating>Complemento</ion-label>
-                    <ion-input type="text"></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label floating>Responsavel</ion-label>
-                    <ion-input type="text"></ion-input>
-                </ion-item>
-                <ion-item>
-                    <ion-label floating>Telefone</ion-label>
-                    <ion-input type="number"></ion-input>
-                </ion-item>
+                <ion-list>
+                    <ion-item>
+                        <ion-label>Bairros</ion-label>
+                        <ion-select  [(ngModel)]="imovel.bairros" name="bairro">
+                            <ion-option required *ngFor="let b of bairros" [value]="b.Codigo">{{b.Nome}}</ion-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-list>
 
-                <button ion-button full>Cadastrar</button>
-            </ion-list>
+                <ion-list>
+                    <ion-item>
+                        <ion-label floating>Logradouro</ion-label>
+                        <ion-input type="text" required [(ngModel)]="imovel.Logradouro" name="logradouro" value=""></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Número</ion-label>
+                        <ion-input type="text" required [(ngModel)]="imovel.Numero" name="numero"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Complemento</ion-label>
+                        <ion-input type="text" [(ngModel)]="imovel.Complemento" name="complemento"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Responsavel</ion-label>
+                        <ion-input type="text" required [(ngModel)]="imovel.Responsavel" name="responsavel"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Telefone</ion-label>
+                        <ion-input type="number" [(ngModel)]="imovel.Telefone" name="telefone"></ion-input>
+                    </ion-item>
+                    
+                    <button ion-button type="submit" full >Cadastrar</button>
+                </ion-list>
+            </form>
         </ion-card-content>
     </ion-card>
 
-    <!--<div class="dashboard cadastroImoveis">
-        <div class="titulo">Cadastro de Imóveis</div>
-    </div>
-    <form id="cadastroImoveis-form3" class="list">
-        <label class="item item-input item-stacked-label" id="cadastroImoveis-input4" name="regiao">
-            <span class="input-label">Região</span>
-            <input placeholder="Ex (Centro)" type="text">
-        </label>
-        <label class="item item-input item-stacked-label" id="cadastroImoveis-input5" name="bairro">
-            <span class="input-label">Bairro</span>
-            <input placeholder="Bairro" type="text">
-        </label>
-        <label class="item item-input item-stacked-label" id="cadastroImoveis-input6" name="responsavel">
-            <span class="input-label">Responsavel</span>
-            <input placeholder="Nome do Responsável" type="text">
-        </label>
-        <label class="item item-input item-stacked-label" id="cadastroImoveis-input7">
-            <span class="input-label">Contato</span>
-            <input placeholder="Telefone" type="tel">
-        </label>
-        <ion-radio id="cadastroImoveis-radio2">Tipo Imovel</ion-radio>
-    </form>
-    <div class="spacer" style="width: 283px; height: 53px;"></div>
-    <form id="cadastroImoveis-form4" class="list">
-        <label class="item item-input item-stacked-label" id="cadastroImoveis-input8" name="codetiqueta">
-            <span class="input-label">Cod Etiqueta</span>
-            <input placeholder="Codigo Etiqueta" type="text">
-        </label>
-    </form>
-    <button id="cadastroImoveis-button7" class="button button-stable  button-block icon ion-qr-scanner"> Escanear Etiqueta</button>
-    <div id="cadastroImoveis-button-bar2" class="button-bar">
-        <button id="cadastroImoveis-button9" class="button button-balanced  button-block button-outline icon ion-android-checkmark-circle">Salvar</button>
-        <a ui-sref="menu" id="cadastroImoveis-button10" class="button button-energized  button-block button-outline icon ion-eye-disabled">Cancelar</a>
-    </div>-->
 </ion-content>

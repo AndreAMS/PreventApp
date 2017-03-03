@@ -5,6 +5,7 @@ import { CadastroImoveisPage } from '../cadastroImoveis/cadastroImoveis';
 import { PesquisaLarvarialPage } from '../pesquisaLarvarial/pesquisaLarvarial';
 import { TratamentoVetorialPage } from '../tratamentoVetorial/tratamentoVetorial';
 import { SyncService } from '../../services/sync.service';
+import { AtividadeDAO } from '../../dao/atividade.dao';
 
 declare var navigator: any;
 declare var Connection: any;
@@ -15,7 +16,9 @@ declare var Connection: any;
 })
 export class HomePage {
 
-    constructor(public navCtrl: NavController, private platform: Platform, private syncService: SyncService, private loadingController: LoadingController) {
+    atividades: any;
+
+    constructor(public navCtrl: NavController, private platform: Platform, private syncService: SyncService, private loadingController: LoadingController, private atividadeDAO: AtividadeDAO) {
 
     }
 
@@ -25,11 +28,14 @@ export class HomePage {
             content: 'Sincronizando as informações...',
             spinner: 'dots'
         });
-        
+
         loader.present().then(() => {
             this.syncService.sincronizar().then(data => {
-                loader.dismiss();
-            });            
+                this.atividadeDAO.getAll().then(data => {
+                    this.atividades = data;
+                    loader.dismiss();
+                });
+            });
         });
 
     }
@@ -42,8 +48,11 @@ export class HomePage {
         this.navCtrl.push(PesquisaLarvarialPage);
     }
 
-    goToTratamentoVetorial() {
-        this.navCtrl.push(TratamentoVetorialPage);
+    goToTratamentoVetorial(codigoId, bairroId) {
+        this.navCtrl.push(TratamentoVetorialPage, {
+            bairroId: bairroId,
+            atividadeId: codigoId
+        });
     }
 
 }

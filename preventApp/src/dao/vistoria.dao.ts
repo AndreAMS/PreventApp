@@ -1,53 +1,50 @@
 import { Injectable } from '@angular/core';
 import * as PouchDB from 'pouchdb';
-import { IBairro } from '../models/bairro.model';
+import { IVistoria } from '../models/vistoria.model';
 
 @Injectable()
-export class BairroDAO {
+export class VistoriaDAO {
     private _db;
-    private _bairros;
+    private _vistoria;
 
     initDB() {
         window["PouchDB"] = PouchDB;
-        this._db = new PouchDB('bairro', { adapter: 'websql' });
+        this._db = new PouchDB('vistoria', { adapter: 'websql' });
     }
 
-    add(bairro) {
-        return this._db.post(bairro);
+    add(vistoria) {
+        return this._db.post(vistoria);
     }
 
-    update(bairro) {
-        return this._db.put(bairro);
+    update(vistoria) {
+        return this._db.put(vistoria);
     }
 
-    delete(bairro) {
-        return this._db.remove(bairro);
+    delete(vistoria) {
+        return this._db.remove(vistoria);
     }
 
     clean() {
         return this._db.allDocs({ include_docs: true })
             .then(docs => {
 
-                this._bairros = docs.rows.map(row => {
+                this._vistoria = docs.rows.map(row => {
                     return row.doc;
                 });
 
                 this._db.changes({ live: true, since: 'now', include_docs: true })
                     .on('change', this.onDatabaseChange);
 
-                this._bairros.forEach(element => {
+                this._vistoria.forEach(element => {
                     this.delete(element);
                 });
             });
     }
 
-    getByRegion(regionId) {
-        
+    getById(id) {
         return this._db.allDocs({ include_docs: true })
             .then(docs => {
-                var _bairroSelected: any;
-
-                this._bairros = docs.rows.map(row => {
+                this._vistoria = docs.rows.map(row => {
                     row.doc.Date = new Date(row.doc.Date);
                     
                     return row.doc;
@@ -56,18 +53,35 @@ export class BairroDAO {
                 this._db.changes({ live: true, since: 'now', include_docs: true })
                     .on('change', this.onDatabaseChange);
 
-                return this._bairros.filter(item => item.Regiao === regionId);
+                return this._vistoria.filter(item => item.Codigo === id);
+            });
+
+    }
+
+    getByImovel(imovelId) {
+        return this._db.allDocs({ include_docs: true })
+            .then(docs => {
+                this._vistoria = docs.rows.map(row => {
+                    row.doc.Date = new Date(row.doc.Date);
+                    
+                    return row.doc;
+                });
+
+                this._db.changes({ live: true, since: 'now', include_docs: true })
+                    .on('change', this.onDatabaseChange);
+
+                return this._vistoria;
             });
 
     }
 
     getAll() {
 
-        if (!this._bairros) {
+        if (!this._vistoria) {
             return this._db.allDocs({ include_docs: true })
                 .then(docs => {
 
-                    this._bairros = docs.rows.map(row => {
+                    this._vistoria = docs.rows.map(row => {
                         row.doc.Date = new Date(row.doc.Date);
                         return row.doc;
                     });
@@ -75,27 +89,27 @@ export class BairroDAO {
                     this._db.changes({ live: true, since: 'now', include_docs: true })
                         .on('change', this.onDatabaseChange);
 
-                    return this._bairros;
+                    return this._vistoria;
                 });
         } else {
-            return Promise.resolve(this._bairros);
+            return Promise.resolve(this._vistoria);
         }
     }
 
     private onDatabaseChange = (change) => {
-        var index = this.findIndex(this._bairros, change.id);
-        var birthday = this._bairros[index];
+        var index = this.findIndex(this._vistoria, change.id);
+        var birthday = this._vistoria[index];
 
         if (change.deleted) {
             if (birthday) {
-                this._bairros.splice(index, 1); // delete
+                this._vistoria.splice(index, 1); // delete
             }
         } else {
             change.doc.Date = new Date(change.doc.Date);
             if (birthday && birthday._id === change.id) {
-                this._bairros[index] = change.doc; // update
+                this._vistoria[index] = change.doc; // update
             } else {
-                this._bairros.splice(index, 0, change.doc) // insert
+                this._vistoria.splice(index, 0, change.doc) // insert
             }
         }
     }

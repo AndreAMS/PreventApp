@@ -4,54 +4,28 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="card-background-page">
     <div class="home-header">
         <h3>Atividades Disponíveis</h3>
     </div>
 
-    <ion-card>
-        <!--<img src="assets/img/home/tratamentoVetorial.png"/>-->
-        <ion-card-content>
-            <ion-card-title>
-                Tratamento Vetorial
-            </ion-card-title>            
-        </ion-card-content>
-    </ion-card>
-
-    
-    <ion-card (click)="goToPesquisaLarvarial()">
-        <ion-card-header>
-            Pesquisa Larvária
-        </ion-card-header>
-        
-        <!--<img src="assets/img/home/pesquisaLarvaria.png" style="display: block; margin-left: auto; margin-right: auto;" width="100%" height="auto">-->
-        
-        <ion-card-content>
-            Tipo: Ponto Estratégico
-        </ion-card-content>
-    </ion-card>
-    
-    <ion-card (click)="goToTratamentoVetorial()">
-        <ion-card-header>
-            Tratamento Vetorial
-        </ion-card-header>
-        
-        <!--<img src="assets/img/home/tratamentoVetorial.png" style="display: block; margin-left: auto; margin-right: auto;" width="100%" height="auto">-->
-        
-        <ion-card-content>
-            Tipo: Tratamento
-        </ion-card-content>
+    <ion-card *ngFor="let a of atividades">
+        <div class="card-image" (click)="goToTratamentoVetorial(a.Codigo, a.BairroId)">
+            <img class="img-responsive" src="assets/img/home/tratamentoVetorial.png" />
+            <div class="card-content">
+                <h3>{{ a.Nome }}</h3>
+                <h5>{{ a.Data }}</h5>
+            </div>
+        </div>
     </ion-card>
 
     <ion-card (click)="goToCadastro()">
-        <!--<img src="assets/img/home/cadastroImoveis.png"/>-->
-        <ion-card-content>
-            <ion-card-title>
-                Cadastro de Imóveis
-            </ion-card-title>            
-        </ion-card-content>
+        <div class="card-image">
+            <img class="img-responsive" src="assets/img/home/cadastroImoveis.png" />
+            <div class="card-content">
+                <h3>Cadastro de Imóveis</h3>
+            </div>
+        </div>
     </ion-card>
 
-    
-    
 </ion-content>

@@ -8,49 +8,39 @@ and open the template in the editor.
     Author     : MarceloMacedo
 */
 
-.lgn_Container {
-    background-color: rgb(99, 214, 199);
-    max-width: 400px;
+.item-md .item-button {
+    height: 45px;    
+    font-size: 1.6rem;
+    font-family: LatoRegular;
+    margin-bottom: 10px;
+}
+
+ion-icon {
+    display: inline-block;
+    font-size: 1.8em;
+    padding: 0px 10px;
+}
+
+.card-header-md {
+    padding: 16px;
+    font-size: 2.4rem;
+    color: #222;
     text-align: center;
-    height: 100%;
+    font-family: LatoRegular;
 }
 
-.lgn_LogoContainer {
-    padding: 20px 0px;
+.list list-md {
+    font-family: LatoRegular;
 }
 
-.lgn_LogoContainer img {
-    display: block;
-    margin: 0 auto;
-    width: 40%;
+.select-md {
+    padding: 13px 0px 13px 0px;
 }
 
-.lgn_Button {
-    font-size: 20pt;
-    padding: 20px;
-    margin-top: 20px;
+.select-text {
+    font-size: 10pt;
 }
 
-.item-md {
-    background-color: transparent;
-}
-
-.lgn_Container input {
-    font-size: 15pt;
-    color: #fff;
-}
-
-.lgn_Container input ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:    #fff;
-}
-.lgn_Container input :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-   color:     #fff;
-   opacity:  1;
-}
-.lgn_Container input ::-moz-placeholder { /* Mozilla Firefox 19+ */
-   color:     #fff;
-   opacity:  1;
-}
-.lgn_Container input :-ms-input-placeholder { /* Internet Explorer 10-11 */
-   color:    #fff;
+.button-full-md {
+    margin-top: 25px;
 }

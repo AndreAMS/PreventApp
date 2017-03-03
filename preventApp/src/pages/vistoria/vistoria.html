@@ -1,0 +1,66 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Visita</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list inset>
+        <ion-item *ngFor="let i of imoveis">
+            <i class="icon ion-android-pin"></i> {{ i.Logradouro }} : {{ i.Numero }}
+        </ion-item>
+    </ion-list>
+
+    <ion-card>
+        <ion-card-header>
+            Vistoria
+        </ion-card-header>
+
+        <ion-card-content>
+            <form (ngSubmit)="realizar()" *ngIf="vistoria">
+                <ion-list>
+                    <ion-item>
+                        <ion-label floating>Pacotes Quimicos Utilizados</ion-label>
+                        <ion-input type="number" name="pacotes" min="0" value="0" [(ngModel)]="vistoria.Pacotes"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Pneus</ion-label>
+                        <ion-input type="number" name="pneus" min="0" value="0" [(ngModel)]="vistoria.Pneus"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Piscina</ion-label>
+                        <ion-input type="number" name="piscina" min="0" value="0" [(ngModel)]="vistoria.Piscina"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Vasos</ion-label>
+                        <ion-input type="number" name="vasos" min="0" value="0" [(ngModel)]="vistoria.Vasos"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label floating>Outros</ion-label>
+                        <ion-input type="number" name="outros" min="0" value="0" [(ngModel)]="vistoria.Outros"></ion-input>
+                    </ion-item>
+
+                    <button ion-button full>Concluir Vistoria</button>
+                </ion-list>
+            </form>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-header>
+            Visita Não realizada
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-list>
+                <ion-item>
+                    <button ion-button full color="danger" (click)="naoAtendimento()">Não Atendimento</button>
+                </ion-item>
+                <ion-item>
+                    <button ion-button full color="danger" (click)="naoEncontrado()">Não Encontrado</button>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

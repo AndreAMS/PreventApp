@@ -32,10 +32,12 @@ export class RegiaoService {
 
       let regioes: IRegiao[];
       regioes = <IRegiao[]>data;
+
+      //this._regiaoDAO.clean();
       
       for (var regiao of regioes)
       {
-        //this._regiaoDAO.add(regiao);
+        this._regiaoDAO.add(regiao);
       }
 
     });

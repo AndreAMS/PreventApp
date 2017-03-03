@@ -25,10 +25,20 @@ export class RegiaoDAO {
     }
 
     clean() {
-        PouchDB.destroy('regiao').then(function() { 
-            this._db = new PouchDB('regiao');
-            this._db.post();
-        });
+        return this._db.allDocs({ include_docs: true })
+            .then(docs => {
+
+                this._regioes = docs.rows.map(row => {
+                    return row.doc;
+                });
+
+                this._db.changes({ live: true, since: 'now', include_docs: true })
+                    .on('change', this.onDatabaseChange);
+
+                this._regioes.forEach(element => {
+                    this.delete(element);
+                });
+            });
     }
 
     getAll() {

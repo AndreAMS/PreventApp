@@ -1,73 +1,70 @@
 import { Injectable } from '@angular/core';
 import * as PouchDB from 'pouchdb';
-import { IBairro } from '../models/bairro.model';
+import { IAtividade } from '../models/atividade.model';
 
 @Injectable()
-export class BairroDAO {
+export class AtividadeDAO {
     private _db;
-    private _bairros;
+    private _atividades;
 
     initDB() {
         window["PouchDB"] = PouchDB;
-        this._db = new PouchDB('bairro', { adapter: 'websql' });
+        this._db = new PouchDB('atividade', { adapter: 'websql' });
     }
 
-    add(bairro) {
-        return this._db.post(bairro);
+    add(atividade) {
+        return this._db.post(atividade);
     }
 
-    update(bairro) {
-        return this._db.put(bairro);
+    update(atividade) {
+        return this._db.put(atividade);
     }
 
-    delete(bairro) {
-        return this._db.remove(bairro);
+    delete(atividade) {
+        return this._db.remove(atividade);
     }
 
     clean() {
         return this._db.allDocs({ include_docs: true })
             .then(docs => {
 
-                this._bairros = docs.rows.map(row => {
+                this._atividades = docs.rows.map(row => {
                     return row.doc;
                 });
 
                 this._db.changes({ live: true, since: 'now', include_docs: true })
                     .on('change', this.onDatabaseChange);
 
-                this._bairros.forEach(element => {
+                this._atividades.forEach(element => {
                     this.delete(element);
                 });
             });
     }
 
-    getByRegion(regionId) {
-        
+    getById(id) {
         return this._db.allDocs({ include_docs: true })
             .then(docs => {
-                var _bairroSelected: any;
-
-                this._bairros = docs.rows.map(row => {
+                this._atividades = docs.rows.map(row => {
                     row.doc.Date = new Date(row.doc.Date);
-                    
+
                     return row.doc;
                 });
 
                 this._db.changes({ live: true, since: 'now', include_docs: true })
                     .on('change', this.onDatabaseChange);
 
-                return this._bairros.filter(item => item.Regiao === regionId);
+                return this._atividades.filter(item => item.Codigo === id);
             });
 
     }
 
     getAll() {
 
-        if (!this._bairros) {
+        if (!this._atividades) {
             return this._db.allDocs({ include_docs: true })
                 .then(docs => {
 
-                    this._bairros = docs.rows.map(row => {
+                    this._atividades = docs.rows.map(row => {
                         row.doc.Date = new Date(row.doc.Date);
                         return row.doc;
                     });
@@ -75,27 +72,27 @@ export class BairroDAO {
                     this._db.changes({ live: true, since: 'now', include_docs: true })
                         .on('change', this.onDatabaseChange);
 
-                    return this._bairros;
+                    return this._atividades;
                 });
         } else {
-            return Promise.resolve(this._bairros);
+            return Promise.resolve(this._atividades);
         }
     }
 
     private onDatabaseChange = (change) => {
-        var index = this.findIndex(this._bairros, change.id);
-        var birthday = this._bairros[index];
+        var index = this.findIndex(this._atividades, change.id);
+        var birthday = this._atividades[index];
 
         if (change.deleted) {
             if (birthday) {
-                this._bairros.splice(index, 1); // delete
+                this._atividades.splice(index, 1); // delete
             }
         } else {
             change.doc.Date = new Date(change.doc.Date);
             if (birthday && birthday._id === change.id) {
-                this._bairros[index] = change.doc; // update
+                this._atividades[index] = change.doc; // update
             } else {
-                this._bairros.splice(index, 0, change.doc) // insert
+                this._atividades.splice(index, 0, change.doc) // insert
             }
         }
     }
