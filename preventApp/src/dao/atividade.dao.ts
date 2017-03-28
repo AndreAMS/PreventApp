@@ -25,6 +25,7 @@ export class AtividadeDAO {
     }
 
     clean() {
+        
         return this._db.allDocs({ include_docs: true })
             .then(docs => {
 

@@ -1,4 +1,7 @@
-export interface IImovel {
+export class IImovel {
+
+    constructor() {};
+
     codigo: number;
     logradouro: string;
     numero: string;
@@ -6,4 +9,5 @@ export interface IImovel {
     responsavel: string;
     telefone: string;
     bairroId: number;
+    barcodeData: string;
 }

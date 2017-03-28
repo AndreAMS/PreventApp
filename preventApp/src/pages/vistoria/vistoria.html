@@ -6,39 +6,68 @@
 
 <ion-content>
     <ion-list inset>
-        <ion-item *ngFor="let i of imoveis">
+        <!--<ion-item *ngFor="let i of imoveis">
             <i class="icon ion-android-pin"></i> {{ i.Logradouro }} : {{ i.Numero }}
-        </ion-item>
+        </ion-item>-->
     </ion-list>
 
     <ion-card>
         <ion-card-header>
-            Vistoria
+            <h3>Vistoria</h3>
+            <div>
+                <h6>{{vistoria.DataHora}}</h6>
+            </div>            
         </ion-card-header>
 
         <ion-card-content>
             <form (ngSubmit)="realizar()" *ngIf="vistoria">
                 <ion-list>
                     <ion-item>
+                        <ion-item>
+                            <ion-range min="1" max="10" value="10">
+                                <ion-icon range-left small name="sad"></ion-icon>
+                                <ion-icon range-right name="happy"></ion-icon>
+                            </ion-range>
+                        </ion-item>
+                    </ion-item>
+                    <ion-item>
                         <ion-label floating>Pacotes Quimicos Utilizados</ion-label>
                         <ion-input type="number" name="pacotes" min="0" value="0" [(ngModel)]="vistoria.Pacotes"></ion-input>
                     </ion-item>
-                    <ion-item>
-                        <ion-label floating>Pneus</ion-label>
-                        <ion-input type="number" name="pneus" min="0" value="0" [(ngModel)]="vistoria.Pneus"></ion-input>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label floating>Piscina</ion-label>
-                        <ion-input type="number" name="piscina" min="0" value="0" [(ngModel)]="vistoria.Piscina"></ion-input>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label floating>Vasos</ion-label>
-                        <ion-input type="number" name="vasos" min="0" value="0" [(ngModel)]="vistoria.Vasos"></ion-input>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label floating>Outros</ion-label>
-                        <ion-input type="number" name="outros" min="0" value="0" [(ngModel)]="vistoria.Outros"></ion-input>
-                    </ion-item>
+
+                    <ion-row>
+                        <ion-col col-6>
+                            <img class="img-responsive" src="assets/img/vistoria/pneus.png" style="max-width: 55px; margin:auto;" />
+                            <ion-item>
+                                <ion-label floating>Pneus</ion-label>
+                                <ion-input type="number" name="pneus" min="0" value="0" [(ngModel)]="vistoria.Pneus"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col col-6>
+                            <img class="img-responsive" src="assets/img/vistoria/piscina.png" style="max-width: 55px; margin:auto;" />
+                            <ion-item>
+                                <ion-label floating>Piscina</ion-label>
+                                <ion-input type="number" name="piscina" min="0" value="0" [(ngModel)]="vistoria.Piscina"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col col-6>
+                            <img class="img-responsive" src="assets/img/vistoria/vasos.png" style="max-width: 55px; margin:auto;" />
+                            <ion-item>
+                                <ion-label floating>Vasos</ion-label>
+                                <ion-input type="number" name="vasos" min="0" value="0" [(ngModel)]="vistoria.Vasos"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col col-6>
+                            <img class="img-responsive" src="assets/img/vistoria/outros.png" style="max-width: 55px; margin:auto;" />
+                            <ion-item>
+                                <ion-label floating>Outros</ion-label>
+                                <ion-input type="number" name="outros" min="0" value="0" [(ngModel)]="vistoria.Outros"></ion-input>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
 
                     <button ion-button full>Concluir Vistoria</button>
                 </ion-list>
@@ -62,5 +91,13 @@
             </ion-list>
         </ion-card-content>
     </ion-card>
+
+    <ion-fab right bottom>
+        <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
+        <ion-fab-list side="left">
+            <button ion-fab><ion-icon name="checkmark-circle"></ion-icon></button>
+            <button ion-fab><ion-icon name="close-circle"></ion-icon></button>
+        </ion-fab-list>
+    </ion-fab>
 
 </ion-content>

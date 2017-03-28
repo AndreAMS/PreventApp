@@ -3,8 +3,8 @@ import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { LoginPage } from '../pages/login/login';
-import { ConfigDao } from '../dao/config.dao'
 import { HomePage } from '../pages/home/home';
+import { ConfigDao } from '../dao/config.dao'
 
 @Component({
     templateUrl: 'app.html',

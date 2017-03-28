@@ -6,7 +6,8 @@
         "Complemento": "Casa",
         "Responsavel": "Latrel Albino",
         "Telefone": "14 36412835",
-        "BairroId": "1"
+        "BairroId": "1",
+        "BarcodeData": ""
     },
     {
         "Codigo": "2",
@@ -15,7 +16,8 @@
         "Complemento": "Casa",
         "Responsavel": "Sasha Albina",
         "Telefone": "14 36412835",
-        "BairroId": "1"
+        "BairroId": "1",
+        "BarcodeData": ""
     },
     {
         "Codigo": "3",
@@ -24,7 +26,8 @@
         "Complemento": "Casa",
         "Responsavel": "Fufu Albino",
         "Telefone": "14 36412835",
-        "BairroId": "1"
+        "BairroId": "1",
+        "BarcodeData": ""
     },
     {
         "Codigo": "4",
@@ -33,7 +36,8 @@
         "Complemento": "Casa",
         "Responsavel": "Armstrong Albino",
         "Telefone": "14 36412835",
-        "BairroId": "1"
+        "BairroId": "1",
+        "BarcodeData": ""
     },
     {
         "Codigo": "5",
@@ -42,7 +46,8 @@
         "Complemento": "Casa",
         "Responsavel": "Paulo Albino",
         "Telefone": "14 36412835",
-        "BairroId": "2"
+        "BairroId": "2",
+        "BarcodeData": ""
     },
     {
         "Codigo": "6",
@@ -51,7 +56,8 @@
         "Complemento": "Casa",
         "Responsavel": "Robson Albino",
         "Telefone": "14 36412835",
-        "BairroId": "2"
+        "BairroId": "2",
+        "BarcodeData": ""
     },
     {
         "Codigo": "7",
@@ -60,7 +66,8 @@
         "Complemento": "Casa",
         "Responsavel": "Bruno Albino",
         "Telefone": "14 36412835",
-        "BairroId": "2"
+        "BairroId": "2",
+        "BarcodeData": ""
     },
     {
         "Codigo": "8",
@@ -69,6 +76,7 @@
         "Complemento": "Casa",
         "Responsavel": "Daniel Albino",
         "Telefone": "14 36412835",
-        "BairroId": "2"
+        "BairroId": "2",
+        "BarcodeData": ""
     }
 ]

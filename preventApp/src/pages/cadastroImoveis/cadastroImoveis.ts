@@ -1,9 +1,13 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IImovel } from '../../models/imovel.model';
 import { RegiaoDAO } from '../../dao/regiao.dao';
 import { BairroDAO } from '../../dao/bairro.dao';
+import { ImovelDAO } from '../../dao/imoveis.dao';
+import { HomePage } from '../../pages/home/home';
 import { QRCodeComponent } from 'angular2-qrcode';
 import { BarcodeScanner } from 'ionic-native';
+import * as $ from 'jquery';
 
 @Component({
     templateUrl: 'cadastroImoveis.html'
@@ -13,12 +17,15 @@ export class CadastroImoveisPage {
     regioes: any;
     bairros: any;
     imovel: {};
+    escaneado: Boolean;
+    codigo: string;
 
     private _navCtrl: NavController;
 
-    constructor(private navCtrl: NavController, private regiaoDAO: RegiaoDAO, private bairroDAO: BairroDAO, private loadingController: LoadingController) {
+    constructor(private navCtrl: NavController, private regiaoDAO: RegiaoDAO, private bairroDAO: BairroDAO, private imovelDAO: ImovelDAO, private loadingController: LoadingController) {
         this._navCtrl = navCtrl;
         this.imovel = {};
+        this.escaneado = false;
     }
 
     ionViewDidLoad() {
@@ -53,16 +60,24 @@ export class CadastroImoveisPage {
     }
 
     cadastrar() {
-        console.log(this.imovel);
+
+        var i = <IImovel>this.imovel;
+        i.barcodeData = this.codigo;      
+        
+        this.imovelDAO.add(i);
+        
+        this.navCtrl.push(HomePage);
     }
 
     escanearCodigo() {
+        this.escaneado = true;
+        this.codigo = "teste";
         BarcodeScanner.scan()
             .then((result) => {
                 if (!result.cancelled) {
-                    const barcodeData = new BarcodeData(result.text, result.format);
-                    //this.scanDetails(barcodeData);
-                    console.log(barcodeData);
+                    var barcodeCode = new BarcodeData(result.text, result.format);
+                    this.codigo = <string>barcodeCode.text;
+                    this.escaneado = true;
                 }
             })
             .catch((err) => {

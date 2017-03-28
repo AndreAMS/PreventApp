@@ -19,8 +19,12 @@ export class ImovelService {
 
     public requestData(): void {
 
-        this.requestServerImoveis();
-
+        this._imovelDAO.getAll().then(data => {
+            if (data.length === 0) {
+                this.requestServerImoveis();
+            }
+        });
+        
     }
 
     private requestServerImoveis() {
@@ -32,8 +36,6 @@ export class ImovelService {
 
             let imoveis: IImovel[];
             imoveis = <IImovel[]>data;
-
-            //this._imovelDAO.clean();
 
             for (var imovel of imoveis) {
                 this._imovelDAO.add(imovel);

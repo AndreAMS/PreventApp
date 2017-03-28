@@ -14,12 +14,16 @@ export class AtividadeService {
   private _atividade: IAtividade;
 
   constructor(private _http: Http, private _atividadeDAO: AtividadeDAO) {
-      this._atividadeDAO.initDB();
+      this._atividadeDAO.initDB();    
   }
 
   public requestData(): void {
 
-    this.requestServerAtividade();
+    this._atividadeDAO.getAll().then(data => {
+      if (data.length === 0) {
+        this.requestServerAtividade();
+      }
+    });
 
   }
 
@@ -32,8 +36,6 @@ export class AtividadeService {
 
       let atividades: IAtividade[];
       atividades = <IAtividade[]>data;
-
-      //this._atividadeDAO.clean();
       
       for (var atividade of atividades)
       {

@@ -4,7 +4,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { AuthService } from '../../services/auth.service';
 import { AuthDao } from '../../dao/auth.dao';
-import { IUser } from '../../models/user.model';
 
 @Component({
     templateUrl: 'login.html',

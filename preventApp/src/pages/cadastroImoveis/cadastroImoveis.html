@@ -11,17 +11,25 @@
         </ion-card-header>
 
         <ion-card-content>
-            <form (ngSubmit)="cadastrar()" *ngIf="imovel">
+            
                 <ion-list>
+                    <ion-item>
+                        <div *ngIf="escaneado" style="text-align: center">
+                            <img class="img-responsive" src="assets/img/cadastro/ok.png" style="max-width: 55px; margin:auto;" />
+                            <span style="font-size: 12pt; color: darkgreen;">Código Escaneado com sucesso</span>
+                        </div>
+                    </ion-item>
                      <ion-item>
-                        <div>
-                            <button ion-button (click)="escanearCodigo()" full color="secondary">
+                        <div *ngIf="!escaneado" >
+                            <button id="cadImg_Scanear" ion-button (click)="escanearCodigo()" full color="secondary">
                                 <ion-icon ios="ios-barcode" md="md-barcode"></ion-icon>
                                 Escanear Código
                             </button>
                         </div>
                     </ion-item>
                 </ion-list>
+
+                <form (ngSubmit)="cadastrar()" *ngIf="imovel">
 
                 <ion-list>
                     <ion-item>
@@ -48,7 +56,7 @@
                     </ion-item>
                     <ion-item>
                         <ion-label floating>Número</ion-label>
-                        <ion-input type="text" required [(ngModel)]="imovel.Numero" name="numero"></ion-input>
+                        <ion-input type="number" required [(ngModel)]="imovel.Numero" name="numero"></ion-input>
                     </ion-item>
                     <ion-item>
                         <ion-label floating>Complemento</ion-label>

@@ -8,4 +8,8 @@ export class IVistoria {
     ImovelId: number;
     Status: string;
     Nova: string;
+    Pneus: number;
+    Piscina: Number;
+    Vasos: Number;
+    Outros: Number;
 }

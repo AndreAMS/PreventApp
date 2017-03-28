@@ -15,17 +15,24 @@ export class VistoriaPage {
     private _atividadeId: number;
     private _vistoriaId: number;
     imoveis: any;
-    vistoria: {};
-    
+    vistoria: IVistoria;
+
     private _navCtrl: NavController;
-    
-    constructor(private navCtrl: NavController, private navParams: NavParams, private loadingController: LoadingController, private imovelDAO: ImovelDAO, private vistoriaDAO: VistoriaDAO) {        
+
+    constructor(private navCtrl: NavController, private navParams: NavParams, private loadingController: LoadingController, private imovelDAO: ImovelDAO, private vistoriaDAO: VistoriaDAO) {
         this._navCtrl = navCtrl;
         this._imovelId = this.navParams.get('imovelId');
         this._bairroId = this.navParams.get('bairroId');
         this._atividadeId = this.navParams.get('atividadeId');
         this._vistoriaId = this.navParams.get('vistoriaId');
-        this.vistoria = {};
+        this.vistoria = new IVistoria();
+
+        if (this._vistoriaId > 0) {
+            this.vistoriaDAO.getById(this._vistoriaId).then(data => {
+
+                this.vistoria = <IVistoria>data;
+            });
+        }
     }
 
     ionViewDidLoad() {
@@ -36,22 +43,30 @@ export class VistoriaPage {
         });
 
         loader.present().then(() => {
-            
-            this.imovelDAO.getById(this._imovelId).then(data => {                    
-                    this.imoveis = data;
-                    loader.dismiss();
-                });
 
-            /*if (this._vistoriaId > 0)
-            {
-                this.vistoriaDAO.getById(this._vistoriaId).then(data => {                    
-                    this.vistoria = data;
-                    loader.dismiss();
-                });
-            }*/
+            this.imovelDAO.getById(this._imovelId).then(data => {
+                this.imoveis = data;
+                loader.dismiss();
+            });
 
-        });        
-    }    
+
+
+        });
+    }
+
+    realizar() {
+        if (this._vistoriaId > 0) {
+            this.vistoriaDAO.update(this.vistoria);
+        }
+        else {
+            this.vistoriaDAO.add(this.vistoria);
+        }
+
+        this.navCtrl.push(TratamentoVetorialPage, {
+            bairroId: this._bairroId,
+            atividadeId: this._atividadeId
+        });
+    }
 
     naoAtendimento() {
         var vistoria = new IVistoria();

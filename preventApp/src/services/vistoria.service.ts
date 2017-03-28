@@ -1,8 +1,8 @@
 import { VistoriaDAO } from '../dao/vistoria.dao';
-import {Component, Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
-import {IVistoria} from '../models/vistoria.model';
-import {Observable} from 'rxjs/Observable';
+import { Component, Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import { IVistoria } from '../models/vistoria.model';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
@@ -14,34 +14,36 @@ export class VistoriaService {
   private _vistoria: IVistoria;
 
   constructor(private _http: Http, private _vistoriaDAO: VistoriaDAO) {
-      this._vistoriaDAO.initDB();
+    this._vistoriaDAO.initDB();
   }
 
   public requestData(): void {
 
-    this.requestServerVistoria();
+    this._vistoriaDAO.getAll().then(data => {
+      if (data.length === 0) {
+        this.requestServerVistoria();
+      }
+    });
+
 
   }
 
-   private requestServerVistoria() {
+  private requestServerVistoria() {
 
     new Promise(
-        resolve => {
-            this._http.get('assets/mock/vistoria.json')
-                .subscribe((response: Response) => resolve(response.json()));
-        }).then(data => {
+      resolve => {
+        this._http.get('assets/mock/vistoria.json')
+          .subscribe((response: Response) => resolve(response.json()));
+      }).then(data => {
 
-      let vistorias: IVistoria[];
-      vistorias = <IVistoria[]>data;
+        let vistorias: IVistoria[];
+        vistorias = <IVistoria[]>data;
 
-      //this._vistoriaDAO.clean();
-      
-      for (var vistoria of vistorias)
-      {
-         this._vistoriaDAO.add(vistoria);
-      }
+        for (var vistoria of vistorias) {
+          this._vistoriaDAO.add(vistoria);
+        }
 
-    });
+      });
 
   }
 

@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import * as PouchDB from 'pouchdb';
-import {IRegiao} from '../models/regiao.model';
+import { IRegiao } from '../models/regiao.model';
 
 @Injectable()
 export class RegiaoDAO {
     private _db;
     private _regioes;
-    
+
     initDB() {
-        window["PouchDB"] = PouchDB;  
+        window["PouchDB"] = PouchDB;
+
         this._db = new PouchDB('regiao', { adapter: 'websql' });
     }
 
@@ -26,18 +27,12 @@ export class RegiaoDAO {
 
     clean() {
         return this._db.allDocs({ include_docs: true })
-            .then(docs => {
-
-                this._regioes = docs.rows.map(row => {
-                    return row.doc;
-                });
-
-                this._db.changes({ live: true, since: 'now', include_docs: true })
-                    .on('change', this.onDatabaseChange);
-
-                this._regioes.forEach(element => {
-                    this.delete(element);
-                });
+            .then(function (doc) {
+                return this._db.remove(doc);
+            }).then(function (result) {
+                // handle result
+            }).catch(function (err) {
+                console.log(err);
             });
     }
 
