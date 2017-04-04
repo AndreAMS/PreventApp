@@ -14,3 +14,16 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+
+.areaInputs .input {    
+    max-width: 60px;
+    margin: auto;
+    margin-top: 5px;
+    text-align: left;
+}
+
+.list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child {
+    border-bottom-color: none;
+    box-shadow: none;
+}

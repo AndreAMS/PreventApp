@@ -2,12 +2,12 @@ export class IImovel {
 
     constructor() {};
 
-    codigo: number;
-    logradouro: string;
-    numero: string;
-    complemento: string;
-    responsavel: string;
-    telefone: string;
-    bairroId: number;
-    barcodeData: string;
+    Codigo: string;
+    Logradouro: string;
+    Numero: string;
+    Complemento: string;
+    Responsavel: string;
+    Telefone: string;
+    BairroId: number;
+    BarcodeData: string;
 }

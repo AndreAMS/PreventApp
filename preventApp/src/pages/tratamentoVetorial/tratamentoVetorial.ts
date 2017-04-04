@@ -6,6 +6,7 @@ import { AtividadeDAO } from '../../dao/atividade.dao';
 import { VistoriaDAO } from '../../dao/vistoria.dao';
 import { IVistoriaImovel } from '../../models/vistoriaImovel.model';
 import { VistoriaPage } from '../vistoria/vistoria';
+import { HomePage } from '../home/home';
 import { BarcodeScanner } from 'ionic-native';
 
 @Component({
@@ -47,7 +48,7 @@ export class TratamentoVetorialPage {
                     imovelData.forEach(d => {
                         var vI = new IVistoriaImovel();
                         vI.imovel = d;
-                        
+
                         var stop: Boolean;
                         stop = false;
 
@@ -109,21 +110,65 @@ export class TratamentoVetorialPage {
         BarcodeScanner.scan()
             .then((result) => {
                 if (!result.cancelled) {
-                    const barcodeData = new BarcodeData(result.text, result.format);
-                    //this.scanDetails(barcodeData);
-                    console.log(barcodeData);
+                    var barcodeCode = new BarcodeData(result.text, result.format);
+
+                    this.imovelDAO.getByBarcodeCode(<string>barcodeCode.text).then(data => {
+
+                        var stop: Boolean;
+                        stop = false;
+
+                        this.vistorias.forEach(d => {
+                            if (!stop) {
+                                if (d.ImovelId === data.Codigo) {
+                                    stop = true;
+
+                                    this.navCtrl.push(VistoriaPage, {
+                                        imovelId: data.Codigo,
+                                        vistoriaId: d.Codigo,
+                                        bairroId: this._bairroId,
+                                        atividadeId: this._atividadeId
+                                    });
+
+                                    return d;
+                                }
+                            }
+                        });
+
+                        if (stop == false) {
+                            this.navCtrl.push(VistoriaPage, {
+                                imovelId: data.Codigo,
+                                vistoriaId: 0,
+                                bairroId: this._bairroId,
+                                atividadeId: this._atividadeId
+                            });
+                        }
+
+
+                    });
                 }
             })
             .catch((err) => {
-                alert(err);
+                console.log(err);
             })
+    }
+
+    getStyle(status) {
+        if (status == "Realizada") {
+            return "rgba(0,205,155,0.1)";
+        } else {
+            return "rgba(255,0,0,0.3)";
+        }
+    }
+
+    goToHome() {
+        this.navCtrl.push(HomePage);
     }
 
 }
 
 export class BarcodeData {
-  constructor(
-    public text: String,
-    public format: String
-  ) {}
+    constructor(
+        public text: String,
+        public format: String
+    ) { }
 }

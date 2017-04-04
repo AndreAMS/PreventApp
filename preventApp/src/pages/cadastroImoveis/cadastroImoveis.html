@@ -11,30 +11,43 @@
         </ion-card-header>
 
         <ion-card-content>
-            
-                <ion-list>
-                    <ion-item>
-                        <div *ngIf="escaneado" style="text-align: center">
-                            <img class="img-responsive" src="assets/img/cadastro/ok.png" style="max-width: 55px; margin:auto;" />
-                            <span style="font-size: 12pt; color: darkgreen;">Código Escaneado com sucesso</span>
-                        </div>
-                    </ion-item>
-                     <ion-item>
-                        <div *ngIf="!escaneado" >
-                            <button id="cadImg_Scanear" ion-button (click)="escanearCodigo()" full color="secondary">
+
+            <ion-list>
+                <ion-item>
+                    <div *ngIf="escaneado" style="text-align: center">
+                        <img class="img-responsive" src="assets/img/cadastro/ok.png" style="max-width: 55px; margin:auto;" />
+                        <span style="font-size: 12pt; color: darkgreen;">Código Escaneado com sucesso</span>
+                    </div>
+                </ion-item>
+                <ion-item>
+                    <div *ngIf="!escaneado">
+                        <button id="cadImg_Scanear" ion-button (click)="escanearCodigo()" full color="secondary">
                                 <ion-icon ios="ios-barcode" md="md-barcode"></ion-icon>
                                 Escanear Código
                             </button>
-                        </div>
-                    </ion-item>
-                </ion-list>
+                    </div>
+                </ion-item>
+                <ion-item *ngIf="!escaneado">
+                    <button id="cadImg_Scanear" ion-button (click)="abrirAreaDigitacao()" full color="primary">
+                                <ion-icon ios="ios-barcode" md="md-barcode"></ion-icon>
+                                Digitar Código
+                            </button>
+                </ion-item>
+            </ion-list>
 
-                <form (ngSubmit)="cadastrar()" *ngIf="imovel">
+            <ion-list>
+                <ion-item *ngIf="informarCodigo">
+                    <ion-label stacked>Código</ion-label>
+                    <ion-input type="text" [(ngModel)]="codigoManual" style="border-bottom: 1px solid lightgray;"></ion-input>
+                </ion-item>
+            </ion-list>
+
+            <form (ngSubmit)="cadastrar()" *ngIf="imovel">
 
                 <ion-list>
                     <ion-item>
                         <ion-label>Região</ion-label>
-                        <ion-select  [(ngModel)]="imovel.regioes" (ngModelChange)="loadBairro($event)" name="regiao">
+                        <ion-select [(ngModel)]="imovel.regioes" (ngModelChange)="loadBairro($event)" name="regiao">
                             <ion-option required *ngFor="let r of regioes" [value]="r.Codigo">{{r.Nome}}</ion-option>
                         </ion-select>
                     </ion-item>
@@ -43,7 +56,7 @@
                 <ion-list>
                     <ion-item>
                         <ion-label>Bairros</ion-label>
-                        <ion-select  [(ngModel)]="imovel.bairros" name="bairro">
+                        <ion-select [(ngModel)]="imovel.bairros" name="bairro">
                             <ion-option required *ngFor="let b of bairros" [value]="b.Codigo">{{b.Nome}}</ion-option>
                         </ion-select>
                     </ion-item>
@@ -70,8 +83,8 @@
                         <ion-label floating>Telefone</ion-label>
                         <ion-input type="number" [(ngModel)]="imovel.Telefone" name="telefone"></ion-input>
                     </ion-item>
-                    
-                    <button ion-button type="submit" full >Cadastrar</button>
+
+                    <button ion-button type="submit" full>Cadastrar</button>
                 </ion-list>
             </form>
         </ion-card-content>

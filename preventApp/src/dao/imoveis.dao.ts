@@ -77,6 +77,24 @@ export class ImovelDAO {
 
     }
 
+    getByBarcodeCode(codigoBarcode) {
+        
+        return this._db.allDocs({ include_docs: true })
+            .then(docs => {
+                this._imoveis = docs.rows.map(row => {
+                    row.doc.Date = new Date(row.doc.Date);
+                    
+                    return row.doc;
+                });
+
+                this._db.changes({ live: true, since: 'now', include_docs: true })
+                    .on('change', this.onDatabaseChange);
+
+                return this._imoveis.filter(item => item.BarcodeData === codigoBarcode);
+            });
+
+    }
+
     getAll() {
 
         if (!this._imoveis) {

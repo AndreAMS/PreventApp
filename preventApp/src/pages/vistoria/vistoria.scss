@@ -1,0 +1,41 @@
+.botaoMinus {
+    float: left;
+    background: lightgray;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin-top: 12px;
+    margin-left: 15px;
+    font-weight: bold;
+    font-size: 11pt;
+}
+
+.botaoMore {
+    float: left;
+    background: lightgray;
+    padding: 5px 10px;
+    border-radius: 10px;    
+    margin-top: 12px;
+    font-weight: bold;
+    font-size: 11pt;
+}
+
+.areaItem .text-input-md {
+    text-align: center;
+        margin: 13px 6px 13px 1px;
+}
+
+.areaItem .item-md {
+    
+    padding-left: 0px!important;
+}
+
+.areaItem {
+        width: 55px;
+    float: left;
+    text-align: right;
+}
+
+.areaItem .item-inner {
+    border-bottom-color: transparent;
+    box-shadow: transparent;
+}

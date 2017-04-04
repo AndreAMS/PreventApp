@@ -1,26 +1,26 @@
 [
     {
-        "Codigo": "1",
+        "Codigo": "e62dd9e5-c1e8-4213-d08e-f0b6800b5dc1",
         "Logradouro": "Rua das Orquideas",
         "Numero": "103",
         "Complemento": "Casa",
         "Responsavel": "Latrel Albino",
         "Telefone": "14 36412835",
         "BairroId": "1",
-        "BarcodeData": ""
+        "BarcodeData": "AKSLVHZI04LMIHA"
     },
     {
-        "Codigo": "2",
+        "Codigo": "e62dd9e5-c1e8-4213-d08e-f0b6800b5dc2",
         "Logradouro": "Rua das Testes",
         "Numero": "102",
         "Complemento": "Casa",
         "Responsavel": "Sasha Albina",
         "Telefone": "14 36412835",
         "BairroId": "1",
-        "BarcodeData": ""
+        "BarcodeData": "NXVL2XQVCWBYKYF"
     },
     {
-        "Codigo": "3",
+        "Codigo": "e62dd9e5-c1e8-4213-d08e-f0b6800b5dc3",
         "Logradouro": "Rua das Amigos",
         "Numero": "100",
         "Complemento": "Casa",
@@ -30,7 +30,7 @@
         "BarcodeData": ""
     },
     {
-        "Codigo": "4",
+        "Codigo": "e62dd9e5-c1e8-4213-d08e-f0b6800b5dc4",
         "Logradouro": "Rua das Bares",
         "Numero": "44",
         "Complemento": "Casa",
@@ -40,7 +40,7 @@
         "BarcodeData": ""
     },
     {
-        "Codigo": "5",
+        "Codigo": "e62dd9e5-c1e8-4213-d08e-f0b6800b5dc5",
         "Logradouro": "Rua das Celulares",
         "Numero": "52",
         "Complemento": "Casa",
@@ -50,7 +50,7 @@
         "BarcodeData": ""
     },
     {
-        "Codigo": "6",
+        "Codigo": "e62dd9e5-c1e8-4213-d08e-f0b6800b5dc16",
         "Logradouro": "Rua das Batman",
         "Numero": "54",
         "Complemento": "Casa",
@@ -60,7 +60,7 @@
         "BarcodeData": ""
     },
     {
-        "Codigo": "7",
+        "Codigo": "e62dd9e5-c1e8-4213-d08e-f0b6800b5dc17",
         "Logradouro": "Rua das Robin",
         "Numero": "99",
         "Complemento": "Casa",
@@ -70,7 +70,7 @@
         "BarcodeData": ""
     },
     {
-        "Codigo": "8",
+        "Codigo": "e62dd9e5-c1e8-4213-d08e-f0b6800b5dc18",
         "Logradouro": "Rua das Gallinhas",
         "Numero": "8",
         "Complemento": "Casa",

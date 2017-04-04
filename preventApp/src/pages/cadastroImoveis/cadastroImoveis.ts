@@ -7,7 +7,7 @@ import { ImovelDAO } from '../../dao/imoveis.dao';
 import { HomePage } from '../../pages/home/home';
 import { QRCodeComponent } from 'angular2-qrcode';
 import { BarcodeScanner } from 'ionic-native';
-import * as $ from 'jquery';
+import { UUID } from 'angular2-uuid';
 
 @Component({
     templateUrl: 'cadastroImoveis.html'
@@ -18,7 +18,9 @@ export class CadastroImoveisPage {
     bairros: any;
     imovel: {};
     escaneado: Boolean;
+    informarCodigo: Boolean;
     codigo: string;
+    codigoManual: string;
 
     private _navCtrl: NavController;
 
@@ -26,6 +28,8 @@ export class CadastroImoveisPage {
         this._navCtrl = navCtrl;
         this.imovel = {};
         this.escaneado = false;
+        this.informarCodigo = false;
+        this.codigoManual = "";
     }
 
     ionViewDidLoad() {
@@ -60,9 +64,13 @@ export class CadastroImoveisPage {
     }
 
     cadastrar() {
-
         var i = <IImovel>this.imovel;
-        i.barcodeData = this.codigo;      
+        i.Codigo = UUID.UUID();  
+
+        if (this.codigo == null)
+            i.BarcodeData = this.codigoManual;
+        else
+            i.BarcodeData = this.codigo;            
         
         this.imovelDAO.add(i);
         
@@ -81,8 +89,15 @@ export class CadastroImoveisPage {
                 }
             })
             .catch((err) => {
-                alert(err);
+                console.log(err);
             })
+    }
+
+    abrirAreaDigitacao() {
+        if (this.informarCodigo)
+            this.informarCodigo = false;
+        else
+            this.informarCodigo = true;
     }
 
 }

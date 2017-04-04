@@ -1,16 +1,28 @@
 [
     {
-        "Codigo": "1",
+        "Codigo": "d62dd9e5-c1e8-4213-d08e-f0b6800b5dc1",
         "DataHora": "20/10/2016 08:00:00",
         "AtividadeId": "1",
-        "ImovelId": "1",
-        "Status": "Realizada"
+        "ImovelId": "e62dd9e5-c1e8-4213-d08e-f0b6800b5dc1",
+        "Status": "Realizada",
+        "Pacotes": 2,
+        "Pneus": 2,
+        "Piscina": 1,
+        "Vasos": 0,
+        "Outros": 0,
+        "Satisfacao": 8
     },
     {
-        "Codigo": "2",
+        "Codigo": "d62dd9e5-c1e8-4213-d08e-f0b6800b5dc2",
         "DataHora": "20/10/2016 09:00:00",
         "AtividadeId": "1",
-        "ImovelId": "2",
-        "Status": "Sem atendimento"
+        "ImovelId": "e62dd9e5-c1e8-4213-d08e-f0b6800b5dc2",
+        "Status": "Sem atendimento",
+        "Pacotes": 0,
+        "Pneus": 0,
+        "Piscina": 0,
+        "Vasos": 0,
+        "Outros": 0,
+        "Satisfacao": 0
     }
 ]

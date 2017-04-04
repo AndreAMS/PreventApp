@@ -1,56 +1,72 @@
 <ion-header>
     <ion-navbar>
         <ion-title>Tratamento Vetorial</ion-title>
+        <button ion-button color="light" style="position: absolute;
+    right: 10px;
+    top: 5px; width: 40px;" (click)="goToHome()"><ion-icon name="home"></ion-icon></button>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <div class="dashboard tratamentoVetorial"> <!--*ngFor="let a of atividade"-->
+    <div class="dashboard tratamentoVetorial">
+        <!--*ngFor="let a of atividade"-->
         <div class="home-header">
             <i class="icon ion-android-calendar"></i>
             <h5>20/03/2017</h5>
         </div>
     </div>
 
-    <ion-card *ngFor="let i of vistoriaImoveis">
+    <div *ngFor="let i of vistoriaImoveis">
 
-        <ion-item>
-            <ion-avatar item-left>
-                <div *ngIf="i.vistoria">
-                    <ion-icon name='star' style="color: green"></ion-icon>
-                </div>
-                <div *ngIf="!i.vistoria">
-                    <ion-icon name='star' style="color:lightgray"></ion-icon>
-                </div>
-            </ion-avatar>
-            <h2>{{ i.imovel.Logradouro }}</h2>
-            <p>Número: 100</p>
-        </ion-item>
+        <ion-card *ngIf="i.vistoria"
+        [style.background-color]="getStyle(i.vistoria.Status)"
+        >
+            <ion-item>
+                <ion-avatar item-left>
+                    <ion-icon name='checkmark-circle' *ngIf="i.vistoria.Status == 'Realizada'" style="color: green"></ion-icon>
+                    <ion-icon name='close-circle' *ngIf="i.vistoria.Status != 'Realizada'" style="color: darkred"></ion-icon>
+                </ion-avatar>
+                <h2>{{ i.imovel.Logradouro }}</h2>
+                <p>{{ i.imovel.Numero }}</p>
+            </ion-item>
 
+            <ion-row>
+                <ion-col>
+                    <a (click)="editarVistoria(i.imovel.Codigo, i.vistoria.Codigo)" *ngIf="i.vistoria">
+                        <button ion-button color="dark">{{ i.vistoria.Status }}</button>
+                    </a>
+                </ion-col>
+                <ion-col center text-center>
+                    <ion-note>
+                        1h antes
+                    </ion-note>
+                </ion-col>
+            </ion-row>
+        </ion-card>
 
-        <ion-card-content>
-            <p></p>
-        </ion-card-content>
+        <ion-card *ngIf="!i.vistoria">
+            <ion-item>
+                <ion-avatar item-left>
+                    <ion-icon name='heart-outline' style="color:lightgray"></ion-icon>
+                </ion-avatar>
+                <h2>{{ i.imovel.Logradouro }}</h2>
+                <p>{{ i.imovel.Numero }}</p>
+            </ion-item>
+            <ion-row>
+                <ion-col>
+                    <a (click)="goToVistoria(i.imovel.Codigo)">
+                        <button ion-button color="default">Realizar Visita</button>
+                    </a>
+                </ion-col>
+                <ion-col center text-center>
+                    <ion-note>
+                        1h antes
+                    </ion-note>
+                </ion-col>
+            </ion-row>
+        </ion-card>
 
-        <ion-row>
-            <ion-col>
-                <a (click)="editarVistoria(i.imovel.Codigo, i.vistoria.Codigo)" *ngIf="i.vistoria">
-                    <span *ngIf="i.vistoria.Status != null" style="color:darkslategrey">{{ i.vistoria.Status }}</span>
-                </a>
-            </ion-col>
-            <ion-col>                
-                <a (click)="goToVistoria(i.imovel.Codigo)" *ngIf="!i.vistoria">
-                    <span>Realizar Visita</span>
-                </a>
-            </ion-col>
-            <ion-col center text-center>
-                <ion-note>
-                    1h antes
-                </ion-note>
-            </ion-col>
-        </ion-row>
-
-    </ion-card>
+    </div>
 
     <!--<ion-list inset >
 
@@ -104,7 +120,7 @@
     <ion-fab right bottom>
         <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
         <ion-fab-list side="left">
-        <button ion-fab><ion-icon name="qr-scanner"></ion-icon></button>
+            <button ion-fab (click)="escanearCodigo()"><ion-icon name="qr-scanner"></ion-icon></button>
         </ion-fab-list>
     </ion-fab>
 
