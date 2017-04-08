@@ -8,11 +8,28 @@ and open the template in the editor.
     Author     : MarceloMacedo
 */
 
+.item-input ion-input, .item-input ion-textarea {
+    background-color: #fff;
+    font-family: LatoRegular;
+    color: #000;
+    margin-top: 10px;
+    border-radius: 14px;
+    padding: 1px 15px;
+}
+
+.lgn_Form {
+    padding: 0px 15px;
+}
+
+.item-md {
+    padding-left: 0px;
+}
+
 .lgn_Container {
-    background-color: rgb(99, 214, 199);
+    background-color: #00cccc;
     width: 100%;
     text-align: center;
-    height: 100%;
+    height: 200%;
     position: absolute;
 }
 
@@ -21,7 +38,6 @@ and open the template in the editor.
     margin-top: 20px;
     margin-left: 20px;
     margin-right: 20px;
-    padding-right: 20px;
     height: 95%;
 }
 
@@ -35,12 +51,20 @@ and open the template in the editor.
     width: 40%;
 }
 
+.title-md {
+    margin-left: -45px;
+}
+
 .lgn_Button {
     font-size: 20pt;
-    padding: 20px;
     margin-top: 20px;
-    width: 250px;
+    width: 100%;
     height: 50px;
+    border-radius: 11px;
+}
+
+.lgn_Button .button-inner {
+    font-size: 12pt;
 }
 
 .item-md {

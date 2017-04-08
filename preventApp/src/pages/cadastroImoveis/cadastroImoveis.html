@@ -1,93 +1,87 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Menu</ion-title>
+        <ion-title>Cadastro de Imoveis</ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <ion-card>
-        <ion-card-header>
-            Cadastro de Imoveis
-        </ion-card-header>
-
-        <ion-card-content>
-
-            <ion-list>
-                <ion-item>
-                    <div *ngIf="escaneado" style="text-align: center">
-                        <img class="img-responsive" src="assets/img/cadastro/ok.png" style="max-width: 55px; margin:auto;" />
-                        <span style="font-size: 12pt; color: darkgreen;">Código Escaneado com sucesso</span>
-                    </div>
-                </ion-item>
-                <ion-item>
-                    <div *ngIf="!escaneado">
-                        <button id="cadImg_Scanear" ion-button (click)="escanearCodigo()" full color="secondary">
+<ion-card>
+<ion-card-content>
+    <ion-list class="areaListaImoveis">
+        <ion-item>
+            <div *ngIf="escaneado" style="text-align: center">
+                <img class="img-responsive" src="assets/img/cadastro/ok.png" style="max-width: 55px; margin:auto;" />
+                <span style="font-size: 12pt; color: darkgreen;">Código Escaneado com sucesso</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <div *ngIf="!escaneado">
+                <button id="cadImg_Scanear" ion-button (click)="escanearCodigo()" full color="secondary">
                                 <ion-icon ios="ios-barcode" md="md-barcode"></ion-icon>
                                 Escanear Código
                             </button>
-                    </div>
-                </ion-item>
-                <ion-item *ngIf="!escaneado">
-                    <button id="cadImg_Scanear" ion-button (click)="abrirAreaDigitacao()" full color="primary">
+            </div>
+        </ion-item>
+        <ion-item *ngIf="!escaneado">
+            <button id="cadImg_Scanear" ion-button (click)="abrirAreaDigitacao()" full color="dark" outline>
                                 <ion-icon ios="ios-barcode" md="md-barcode"></ion-icon>
                                 Digitar Código
                             </button>
-                </ion-item>
-            </ion-list>
+        </ion-item>
+    </ion-list>
 
-            <ion-list>
-                <ion-item *ngIf="informarCodigo">
-                    <ion-label stacked>Código</ion-label>
-                    <ion-input type="text" [(ngModel)]="codigoManual" style="border-bottom: 1px solid lightgray;"></ion-input>
-                </ion-item>
-            </ion-list>
+    <ion-list>
+        <ion-item *ngIf="informarCodigo">
+            <ion-label stacked>Código</ion-label>
+            <ion-input type="text" [(ngModel)]="codigoManual" style="border-bottom: 1px solid lightgray;"></ion-input>
+        </ion-item>
+    </ion-list>
 
-            <form (ngSubmit)="cadastrar()" *ngIf="imovel">
+    <form (ngSubmit)="cadastrar()" *ngIf="imovel">
 
-                <ion-list>
-                    <ion-item>
-                        <ion-label>Região</ion-label>
-                        <ion-select [(ngModel)]="imovel.regioes" (ngModelChange)="loadBairro($event)" name="regiao">
-                            <ion-option required *ngFor="let r of regioes" [value]="r.Codigo">{{r.Nome}}</ion-option>
-                        </ion-select>
-                    </ion-item>
-                </ion-list>
+        <ion-list>
+            <ion-item>
+                <ion-label>Região</ion-label>
+                <ion-select [(ngModel)]="imovel.regioes" (ngModelChange)="loadBairro($event)" name="regiao">
+                    <ion-option required *ngFor="let r of regioes" [value]="r.Codigo">{{r.Nome}}</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
 
-                <ion-list>
-                    <ion-item>
-                        <ion-label>Bairros</ion-label>
-                        <ion-select [(ngModel)]="imovel.bairros" name="bairro">
-                            <ion-option required *ngFor="let b of bairros" [value]="b.Codigo">{{b.Nome}}</ion-option>
-                        </ion-select>
-                    </ion-item>
-                </ion-list>
+        <ion-list>
+            <ion-item>
+                <ion-label>Bairros</ion-label>
+                <ion-select [(ngModel)]="imovel.bairros" name="bairro">
+                    <ion-option required *ngFor="let b of bairros" [value]="b.Codigo">{{b.Nome}}</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-list>
 
-                <ion-list>
-                    <ion-item>
-                        <ion-label floating>Logradouro</ion-label>
-                        <ion-input type="text" required [(ngModel)]="imovel.Logradouro" name="logradouro" value=""></ion-input>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label floating>Número</ion-label>
-                        <ion-input type="number" required [(ngModel)]="imovel.Numero" name="numero"></ion-input>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label floating>Complemento</ion-label>
-                        <ion-input type="text" [(ngModel)]="imovel.Complemento" name="complemento"></ion-input>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label floating>Responsavel</ion-label>
-                        <ion-input type="text" required [(ngModel)]="imovel.Responsavel" name="responsavel"></ion-input>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label floating>Telefone</ion-label>
-                        <ion-input type="number" [(ngModel)]="imovel.Telefone" name="telefone"></ion-input>
-                    </ion-item>
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Logradouro</ion-label>
+                <ion-input type="text" required [(ngModel)]="imovel.Logradouro" name="logradouro" value=""></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Número</ion-label>
+                <ion-input type="number" required [(ngModel)]="imovel.Numero" name="numero"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Complemento</ion-label>
+                <ion-input type="text" [(ngModel)]="imovel.Complemento" name="complemento"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Responsavel</ion-label>
+                <ion-input type="text" required [(ngModel)]="imovel.Responsavel" name="responsavel"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Telefone</ion-label>
+                <ion-input type="number" [(ngModel)]="imovel.Telefone" name="telefone"></ion-input>
+            </ion-item>
 
-                    <button ion-button type="submit" full>Cadastrar</button>
-                </ion-list>
-            </form>
-        </ion-card-content>
-    </ion-card>
-
+            <button ion-button type="submit" full>Cadastrar</button>
+        </ion-list>
+    </form>
+</ion-card-content>
+</ion-card>
 </ion-content>

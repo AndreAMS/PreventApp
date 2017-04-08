@@ -7,6 +7,28 @@ and open the template in the editor.
     Created on : 04/01/2017, 11:07:36
     Author     : MarceloMacedo
 */
+.bar-button::after {
+    z-index: 9999;
+}
+
+.label-md[floating], .label-md {
+    color: #333!important;
+    font-size: 10pt;
+    text-transform: uppercase;
+}
+
+.areaListaImoveis  {
+    margin-top: -50px;
+}
+
+#cadImg_Scanear {
+    border-color: transparent;
+    height: 45px;
+}
+
+.label-md {
+    margin: 0px 8px 0px 0;
+}
 
 .item-md .item-button {
     height: 45px;    
