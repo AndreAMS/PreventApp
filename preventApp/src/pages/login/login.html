@@ -4,6 +4,7 @@
             <div class="lgn_LogoContainer">
                 <img src="assets/img/login/logo.png" alt="">
             </div>
+
             <div class="lgn_Form">
                 <!--<form [formGroup]="_todo" (ngSubmit)="logar()">
                     <ion-item>
@@ -15,15 +16,25 @@
 
                     <button class="lgn_Button" type="submit" ion-button round outline>Entrar</button>
                 </form>-->
-                <form [formGroup]="_todo" (ngSubmit)="logar()">
+                <form [formGroup]="_user" (ngSubmit)="logar()">
                     <ion-item>
-                        <ion-input type="email" required placeholder="Usuário" formControlName="user"></ion-input>
+                        <ion-input type="text" required placeholder="Usuário" formControlName="user"></ion-input>
                     </ion-item>
                     <ion-item>
                         <ion-input type="password" required  placeholder="Senha" formControlName="password"></ion-input>
                     </ion-item>
 
                     <button class="lgn_Button" type="submit" ion-button>Entrar</button>
+
+                    <!--<div class="lgn_ForgetPassword">
+                        <a>
+                            <span>ESQUECI MINHA SENHA</span>
+                        </a>
+                    </div>-->
+
+                    <div class="lgn_Loader" *ngIf="loading">
+                        <img src="assets/img/login/loader.svg" height="40" alt="Nice green circle"/>
+                    </div>
                 </form>
             </div>
         </div>

@@ -1,5 +1,8 @@
-export interface IBairro {
-    codigo: number;
-    nome: string;
-    regiaoId: number;
+export class IBairro {
+
+    constructor() {};
+
+    bairCodigo: number;
+    bairNome: string;
+    regCodigo: number;
 }

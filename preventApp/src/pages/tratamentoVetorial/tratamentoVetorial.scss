@@ -8,6 +8,93 @@ and open the template in the editor.
     Author     : MarceloMacedo
 */
 
+.tratVet_AreaMarker {
+    width: 60px; 
+    float: left;
+}
+
+.tratVet_AreaInfo {
+    float: left;
+    width: 100px;
+}
+
+.tratVet_AreaMarker img {
+    width: 60px;
+    padding: 10px;
+}
+
+.tratVet_AreaContato {
+    margin-top: 5px;
+}
+
+.tratVet_AreaEndereco, .tratVet_AreaContato {
+    padding-right: 20px;
+}
+
+.tratVet_AreaEndereco span {
+    color: darkslategrey;
+    font-size: 9pt;
+}
+
+.tratVet_AreaStatusEndereco {
+    padding-bottom: 10px;
+}
+
+.tratVet_AreaStatusEndereco span {
+    font-size: 9pt;
+    font-weight: 600;
+}
+
+.tratVet_Alert {
+    color: darkred;
+}
+
+.tratVet_AreaStatus {
+    width: 20px;
+    text-align: center;
+    float: right;
+    margin-top: -20px;
+    margin-right: 15px;
+}
+
+.tratVet_AreaButton {
+    float: right;
+    margin-top: -20px;
+    margin-right: 5px;
+    background: lightgray;
+    width: 80px;
+    text-align: center;
+    height: 30px;
+    border: 1px solid #333;
+}
+
+.tratVet_AreaButton:hover {
+    cursor: pointer;
+    background: gray;
+}
+
+.tratVet_AreaButton:active {
+    background: purple;
+}
+
+.tratVet_AreaButton span {
+    line-height: 30px;
+    font-size: 9pt;
+}
+
+.tratVet_AreaContato span {
+    color: darkslategrey;
+    font-size: 11pt;
+}
+
+.tratVet_AreaStatusAlert .ion-md-checkbox-outline:before {
+    color: darkred;
+}
+
+.tratVet_AreaStatusOk .ion-md-checkbox-outline:before {
+    color: green;
+}
+
 .button-inner {
         font-size: 8pt;
 }

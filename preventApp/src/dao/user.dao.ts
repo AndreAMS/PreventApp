@@ -5,11 +5,12 @@ import {IUser} from '../models/user.model';
 @Injectable()
 export class UserDAO {
     private _db;
-    private _users;
+    public _users;
     
     initDB() {
         window["PouchDB"] = PouchDB;  
         this._db = new PouchDB('user', { adapter: 'websql' });
+        this._users = this.getAll();
     }
 
     add(user) {
@@ -24,21 +25,23 @@ export class UserDAO {
         return this._db.remove(user);
     }
 
-    get(user, password) : IUser {
-        var dados = this.getAll();
+    get(user, password) : Array<IUser> {
+        
+        return this._db.allDocs({ include_docs: true })
+            .then(docs => {
+                var _users: any;
 
-        dados.forEach(d => {
-            console.log(d);
-        });
+                _users = docs.rows.map(row => {
+                    row.doc.Date = new Date(row.doc.Date);
+                    
+                    return row.doc;
+                });
 
-       var usuario: IUser = {
-            id: 0,
-            username: "",
-            password: "",
-            token: null
-        };
+                this._db.changes({ live: true, since: 'now', include_docs: true })
+                    .on('change', this.onDatabaseChange);
 
-        return usuario;
+                return Array<IUser>(_users.filter(item => item.usuLogin === user));
+            });        
     }
 
     getAll() {
@@ -81,11 +84,15 @@ export class UserDAO {
     }
 
     private findIndex(array, id) {
-        var low = 0, high = array.length, mid;
-        while (low < high) {
-            mid = (low + high) >>> 1;
-            array[mid]._id < id ? low = mid + 1 : high = mid
+
+        if (typeof array !== 'undefined')
+        {
+            var low = 0, high = array.length, mid;
+            while (low < high) {
+                mid = (low + high) >>> 1;
+                array[mid]._id < id ? low = mid + 1 : high = mid
+            }
+            return low;
         }
-        return low;
     }
 }

@@ -5,11 +5,12 @@ import { IVistoria } from '../models/vistoria.model';
 @Injectable()
 export class VistoriaDAO {
     private _db;
-    private _vistoria;
+    public _vistoria;
 
     initDB() {
         window["PouchDB"] = PouchDB;
         this._db = new PouchDB('vistoria', { adapter: 'websql' });
+        this._vistoria = this.getAll();
     }
 
     add(vistoria) {

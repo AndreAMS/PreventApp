@@ -5,11 +5,13 @@ import { IImovel } from '../models/imovel.model';
 @Injectable()
 export class ImovelDAO {
     private _db;
-    private _imoveis;
+    public _imoveis;
 
     initDB() {
         window["PouchDB"] = PouchDB;
         this._db = new PouchDB('imoveis', { adapter: 'websql' });
+        this._imoveis = this.getAll();
+        console.log(this._imoveis);
     }
 
     add(imovel) {

@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 
-import { NavController, Alert, Platform, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, Alert, Platform, LoadingController } from 'ionic-angular';
 import { CadastroImoveisPage } from '../cadastroImoveis/cadastroImoveis';
 import { PesquisaLarvarialPage } from '../pesquisaLarvarial/pesquisaLarvarial';
 import { TratamentoVetorialPage } from '../tratamentoVetorial/tratamentoVetorial';
+import { PlanejamentoDAO } from '../../dao/planejamento.dao';
+import { IPlanejamento } from '../../models/planejamento.model';
 import { SyncService } from '../../services/sync.service';
-import { AtividadeDAO } from '../../dao/atividade.dao';
 
 declare var navigator: any;
 declare var Connection: any;
@@ -15,11 +16,11 @@ declare var Connection: any;
     templateUrl: 'home.html'
 })
 export class HomePage {
+    private _token: string;
+    planejamento: any;
 
-    atividades: any;
-
-    constructor(public navCtrl: NavController, private platform: Platform, private syncService: SyncService, private loadingController: LoadingController, private atividadeDAO: AtividadeDAO) {
-
+    constructor(public navCtrl: NavController, private navParams: NavParams, private platform: Platform, private syncService: SyncService, private loadingController: LoadingController, private planejamentoDAO: PlanejamentoDAO) {
+        this._token = this.navParams.get('token');
     }
 
     ionViewDidLoad() {
@@ -30,28 +31,31 @@ export class HomePage {
         });
 
         loader.present().then(() => {
-            this.syncService.sincronizar().then(data => {
-                this.atividadeDAO.getAll().then(data => {
-                    this.atividades = data;
-                    loader.dismiss();
-                });
+            this.syncService.sincronizar(this._token).then(a => {
+                this.planejamento = this.planejamentoDAO._planejamentos; 
+                loader.dismiss();
             });
         });
 
+    }
+
+    atualizar() {
+        this.syncService.enviar(this._token);
     }
 
     goToCadastro() {
         this.navCtrl.push(CadastroImoveisPage);
     }
 
-    goToPesquisaLarvarial() {
-        this.navCtrl.push(PesquisaLarvarialPage);
+    goToPesquisaLarvarial(bairroId) {
+        this.navCtrl.push(PesquisaLarvarialPage, {
+            bairroId: bairroId
+        });
     }
 
-    goToTratamentoVetorial(codigoId, bairroId) {
+    goToTratamentoVetorial(bairroId) {
         this.navCtrl.push(TratamentoVetorialPage, {
-            bairroId: bairroId,
-            atividadeId: codigoId
+            bairroId: bairroId
         });
     }
 

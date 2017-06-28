@@ -1,25 +1,80 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Tratamento Vetorial</ion-title>
+        <ion-title>TRATAMENTO VETORIAL</ion-title>
         <button ion-button color="light" style="position: absolute;
     right: 10px;
-    top: 5px; width: 40px; background: transparent;" (click)="goToHome()"><ion-icon name="home"></ion-icon></button>
+    top: 5px; width: 40px; background: transparent;" (click)="goToHome()"><ion-icon name="menu"></ion-icon></button>
     </ion-navbar>
 </ion-header>
 
 <ion-content>
     <div class="dashboard tratamentoVetorial">
-        <!--*ngFor="let a of atividade"-->
         <div class="home-header">
-            <i class="icon ion-android-calendar"></i>
-            <h5>20/03/2017</h5>
+            <i class="icon ion-android-calendar"></i>            
         </div>
     </div>
 
     <div *ngFor="let i of vistoriaImoveis">
+        <ion-card>
+            <ion-row>
+                <ion-col>
+                    <div class="tratVet_AreaMarker">
+                        <img class="img-responsive" src="assets/img/acoes/marker.png"/>
+                    </div>
+                    <div class="tratVet_AreaInfoContato">
+                        <div class="tratVet_AreaContato">
+                            <span>
+                                Contato: {{ i.imovel.imovNomeContato }}
+                            </span>
+                        </div>
+                        <div *ngIf="!i.vistoria" class="tratVet_AreaStatus tratVet_AreaStatusAlert">
+                            <ion-icon name="checkbox-outline"></ion-icon>
+                        </div>
+                        <div *ngIf="i.vistoria" class="tratVet_AreaStatus tratVet_AreaStatusOk">
+                            <ion-icon name="checkbox-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="tratVet_AreaEndereco">
+                        <span>
+                            {{ i.imovel.imovLogradouro }}, N {{ i.imovel.imovNumero }} - {{ i.bairro.bairNome }}
+                        </span>
+                    </div>
+                    <div *ngIf="i.vistoria" class="tratVet_AreaStatusEndereco">
+                        <span *ngIf="i.vistoria.vis_status === 'realizada'">
+                            Status - Realizada
+                        </span>
+                        <span *ngIf="i.vistoria.vis_status === 'naorealizada'">
+                            Status - Não Teve Atendimento
+                        </span>
+                    </div>
+                    <div *ngIf="!i.vistoria" class="tratVet_AreaStatusEndereco ">
+                        <span class="tratVet_Alert">
+                            Status - Não Vistoriado
+                        </span>
+                    </div>
+                    <div class="tratVet_AreaButton" (click)="goToVistoria(i.imovel._id)">
+                        <span>
+                            Analisar
+                        </span>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+    </div>
 
-        <ion-card *ngIf="i.vistoria"
-        >
+
+    <!--<div *ngFor="let i of vistoriaImoveis">
+
+        <ion-card *ngIf="i.vistoria">
+            <ion-row>
+                <ion-col col-xl-2>
+                    <div class="tratVet_AreaMarker">
+                        <img class="img-responsive" src="assets/img/acoes/marker.png"/>
+                    </div>
+                </ion-col>
+                <ion-col col-xl-10>This column will take 12 columns</ion-col>
+            </ion-row>
+
             <ion-item>
                 <div  class="indicador RealizadaVisita" *ngIf="i.vistoria.Status == 'Realizada'"></div>
                 <div class="indicador naoRealizadaVisita" *ngIf="i.vistoria.Status != 'Realizada'"></div>
@@ -44,6 +99,14 @@
         </ion-card>
 
         <ion-card *ngIf="!i.vistoria">
+            <ion-row>
+                <div class="tratVet_AreaMarker">
+                    <img class="img-responsive" src="assets/img/acoes/marker.png"/>
+                </div>
+                <div class="tratVet_AreaInfo">
+                </div>                
+            </ion-row>
+
             <ion-item>
                 <div class="indicador realizar"></div>
                 <div style="padding: 10px 15px">
@@ -65,7 +128,7 @@
             </ion-row>
         </ion-card>
 
-    </div>
+    </div>-->
 
     <!--<ion-list inset >
 
@@ -117,18 +180,11 @@
     </ion-list>-->
 
     <ion-fab right bottom>
-        <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
+        <button ion-fab color="secondary"><ion-icon name="add"></ion-icon></button>
         <ion-fab-list side="left">
             <button ion-fab (click)="escanearCodigo()"><ion-icon name="qr-scanner"></ion-icon></button>
         </ion-fab-list>
     </ion-fab>
 
-    <ion-list>
-        <ion-item>
-            <div>
-                <button ion-button (click)="escanearCodigo()" full color="secondary">Escanear Código</button>
-            </div>
-        </ion-item>
-    </ion-list>
 
 </ion-content>

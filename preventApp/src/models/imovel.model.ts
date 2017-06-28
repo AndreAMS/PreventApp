@@ -2,12 +2,18 @@ export class IImovel {
 
     constructor() {};
 
-    Codigo: string;
-    Logradouro: string;
-    Numero: string;
-    Complemento: string;
-    Responsavel: string;
-    Telefone: string;
-    BairroId: number;
-    BarcodeData: string;
+    imovCodigo: string;
+    imovCep: string;
+    imovLogradouro: string;
+    imovNumero: string;
+    imovComplemento: string;
+    imovStatus: string;
+    imovQuadra: string;
+    imovPontoEstrategico: boolean;
+    imovNomeContato: string;
+    imovEmailContato: string;
+    imovTelefoneContato: string;
+    imovCelularContato: string;
+    bairCodigo: number;
+    etiqIdentificacao: string;
 }

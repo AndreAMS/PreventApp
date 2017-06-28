@@ -1,4 +1,4 @@
-import { TratamentoVetorialPage } from '../tratamentoVetorial/tratamentoVetorial';
+import { PesquisaLarvarialPage } from '../pesquisaLarvarial/pesquisaLarvarial';
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ImovelDAO } from '../../dao/imoveis.dao';
@@ -7,9 +7,9 @@ import { IVistoria } from '../../models/vistoria.model';
 import { UUID } from 'angular2-uuid';
 
 @Component({
-    templateUrl: 'vistoria.html'
+    templateUrl: 'vistoriaPesquisa.html'
 })
-export class VistoriaPage {
+export class VistoriaPesquisaPage {
 
     private _imovelId: string;
     private _tipat_codigo: number;
@@ -23,7 +23,7 @@ export class VistoriaPage {
         this._navCtrl = navCtrl;
         this._imovelId = this.navParams.get('imovelId');
         this.vistoria = new IVistoria();
-        this._tipat_codigo = 1;
+        this._tipat_codigo = 2;
     }
 
     ionViewDidLoad() {
@@ -47,8 +47,10 @@ export class VistoriaPage {
                 this.vistoria.vis_piscina = 0;
                 this.vistoria.vis_vasos = 0;
                 this.vistoria.vis_caixadagua = 0;
+                this.vistoria.vis_aegypt = 0;
+                this.vistoria.vis_alb = 0;
+                this.vistoria.vis_tubos = 0;
                 this.vistoria.vis_amostras = 0;
-                this.vistoria.vis_frascos = 0;
             }
 
             console.log(typeof this.vistoria._id);
@@ -59,6 +61,30 @@ export class VistoriaPage {
     }
 
     diminuir(tipo) {
+        if (tipo == 'vis_tubos')
+        {
+            if (this.vistoria.vis_tubos - 1 > -1)
+            {
+                this.vistoria.vis_tubos = this.vistoria.vis_tubos - 1;
+            }
+        }
+
+        if (tipo == 'vis_alb')
+        {
+            if (this.vistoria.vis_alb - 1 > -1)
+            {
+                this.vistoria.vis_alb = this.vistoria.vis_alb - 1;
+            }
+        }
+
+        if (tipo == 'vis_aegypt')
+        {
+            if (this.vistoria.vis_aegypt - 1 > -1)
+            {
+                this.vistoria.vis_aegypt = this.vistoria.vis_aegypt - 1;
+            }
+        }
+
         if (tipo == 'vis_pneus')
         {
             if (this.vistoria.vis_pneus - 1 > -1)
@@ -117,6 +143,26 @@ export class VistoriaPage {
     }
 
     aumenta(tipo) {
+        if (tipo == 'vis_amostras')
+        {
+            this.vistoria.vis_amostras = this.vistoria.vis_amostras + 1;
+        }
+
+        if (tipo == 'vis_tubos')
+        {
+            this.vistoria.vis_tubos = this.vistoria.vis_tubos + 1;
+        }
+
+        if (tipo == 'vis_alb')
+        {
+            this.vistoria.vis_alb = this.vistoria.vis_alb + 1;
+        }
+
+        if (tipo == 'vis_aegypt')
+        {
+            this.vistoria.vis_aegypt = this.vistoria.vis_aegypt + 1;
+        }
+
         if (tipo == 'vis_pneus')
         {
             this.vistoria.vis_pneus = this.vistoria.vis_pneus + 1;
@@ -142,10 +188,6 @@ export class VistoriaPage {
             this.vistoria.vis_frascos = this.vistoria.vis_frascos + 1;
         }
 
-        if (tipo == 'vis_amostras')
-        {
-            this.vistoria.vis_amostras = this.vistoria.vis_amostras + 1;
-        }
     }
 
     cadastrar() { 
@@ -162,7 +204,7 @@ export class VistoriaPage {
             this.vistoriaDAO.update(this.vistoria);
         }
 
-        this.navCtrl.push(TratamentoVetorialPage, {
+        this.navCtrl.push(PesquisaLarvarialPage, {
             bairroId: 8
         });
     }
@@ -179,6 +221,10 @@ export class VistoriaPage {
             this.vistoria.vis_caixadagua = 0;
             this.vistoria.vis_amostras = 0;
             this.vistoria.vis_frascos = 0;
+            this.vistoria.vis_aegypt = 0;
+            this.vistoria.vis_alb = 0;
+            this.vistoria.vis_tubos = 0;
+            this.vistoria.vis_amostras = 0;
             this.vistoria.Date = new Date();
             this.vistoria.tipat_codigo = this._tipat_codigo;
 
@@ -194,15 +240,20 @@ export class VistoriaPage {
             this.vistoria.vis_caixadagua = 0;
             this.vistoria.vis_amostras = 0;
             this.vistoria.vis_frascos = 0;
+            this.vistoria.vis_aegypt = 0;
+            this.vistoria.vis_alb = 0;
+            this.vistoria.vis_tubos = 0;
+            this.vistoria.vis_amostras = 0;
             this.vistoria.tipat_codigo = this._tipat_codigo;
             
             this.vistoriaDAO.update(this.vistoria);
         }
         
-        this.navCtrl.push(TratamentoVetorialPage, {
+        this.navCtrl.push(PesquisaLarvarialPage, {
             bairroId: 8
         });
     }
+
 
     /*realizar() {
         if (this._vistoriaId != "") {

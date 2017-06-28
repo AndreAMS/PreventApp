@@ -5,12 +5,12 @@ import { IRegiao } from '../models/regiao.model';
 @Injectable()
 export class RegiaoDAO {
     private _db;
-    private _regioes;
+    public _regioes;
 
     initDB() {
         window["PouchDB"] = PouchDB;
-
         this._db = new PouchDB('regiao', { adapter: 'websql' });
+        this._regioes = this.getAll();
     }
 
     add(regiao) {
@@ -34,6 +34,24 @@ export class RegiaoDAO {
             }).catch(function (err) {
                 console.log(err);
             });
+    }
+
+    getById(codigo) {
+        
+        return this._db.allDocs({ include_docs: true })
+            .then(docs => {
+                this._regioes = docs.rows.map(row => {
+                    row.doc.Date = new Date(row.doc.Date);
+                    
+                    return row.doc;
+                });
+
+                this._db.changes({ live: true, since: 'now', include_docs: true })
+                    .on('change', this.onDatabaseChange);
+
+                return this._regioes.filter(item => item.regCodigo === codigo);
+            });
+
     }
 
     getAll() {

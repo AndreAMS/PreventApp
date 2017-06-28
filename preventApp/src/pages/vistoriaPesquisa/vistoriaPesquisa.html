@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>TRATAMENTO ANTI-VETORIAL</ion-title>
+        <ion-title>PESQUISA LARVARIAL</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -8,7 +8,7 @@
 
     <ion-card *ngIf="vistoria._id">
         <ion-card-header>
-            <div class="tratVis_Cabec">
+            <div class="tratVis_Cabec" >
                 <h6>Data Vistoria: {{ vistoria.Date  | date: 'dd/MM/yyyy' }}</h6>                
                 <h6>Hora da Vistoria: {{ vistoria.Date  | date: 'H:mm' }}</h6>
             </div>
@@ -19,6 +19,107 @@
 
     <ion-card>
         <ion-card-content>
+            <div class="tratVis_Depositos">
+                 <h6>Coleta de Amostras:</h6>
+            </div>
+            <div class="tratVis_Items">
+                <div class="tratVis_Item">
+                    <div class="tratVis_AreaImage">
+                        <img class="img-responsive" src="assets/img/vistoria/tubo1.png"/>
+                        <span>Tubos</span>
+                    </div>
+                    <div class="tratVis_AreaOpcoes">
+                        <a (click)="diminuir('vis_tubos')">
+                            <div class="tratVist_Button">
+                                <span>-</span>
+                            </div>
+                        </a>
+                        <div class="tratVist_Input">
+                            <input type="text" [(ngModel)]="vistoria.vis_tubos" name="vis_tubos" min="0" value="0" />
+                        </div>
+                        <a (click)="aumenta('vis_tubos')">
+                            <div class="tratVist_Button">
+                                <span>+</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="tratVis_Item">
+                    <div class="tratVis_AreaImage">
+                        <img class="img-responsive" src="assets/img/vistoria/tubo2.png"/>
+                        <span>Amostras</span>
+                    </div>
+                    <div class="tratVis_AreaOpcoes">
+                        <a (click)="diminuir('vis_amostras')">
+                            <div class="tratVist_Button">
+                                <span>-</span>
+                            </div>
+                        </a>
+                        <div class="tratVist_Input">
+                            <input type="text" [(ngModel)]="vistoria.vis_amostras" name="vis_amostras" min="0" value="0" />
+                        </div>
+                        <a (click)="aumenta('vis_amostras')">
+                            <div class="tratVist_Button">
+                                <span>+</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div> 
+        </ion-card-content>
+        <ion-card-content>
+
+            <div class="tratVis_Depositos">
+                 <h6>Larvas Examinadas:</h6>
+            </div>
+            <div class="tratVis_Items">
+                <div class="tratVis_Item">
+                    <div class="tratVis_AreaImage">
+                        <img class="img-responsive" src="assets/img/vistoria/mosquito1.png"/>
+                        <span>Aegypt</span>
+                    </div>
+                    <div class="tratVis_AreaOpcoes">
+                        <a (click)="diminuir('vis_aegypt')">
+                            <div class="tratVist_Button">
+                                <span>-</span>
+                            </div>
+                        </a>
+                        <div class="tratVist_Input">
+                            <input type="text" [(ngModel)]="vistoria.vis_aegypt" name="vis_aegypt" min="0" value="0" />
+                        </div>
+                        <a (click)="aumenta('vis_aegypt')">
+                            <div class="tratVist_Button">
+                                <span>+</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="tratVis_Item">
+                    <div class="tratVis_AreaImage">
+                        <img class="img-responsive" src="assets/img/vistoria/mosquito2.png"/>
+                        <span>Alb.</span>
+                    </div>
+                    <div class="tratVis_AreaOpcoes">
+                        <a (click)="diminuir('vis_alb')">
+                            <div class="tratVist_Button">
+                                <span>-</span>
+                            </div>
+                        </a>
+                        <div class="tratVist_Input">
+                            <input type="text" [(ngModel)]="vistoria.vis_alb" name="vis_alb" min="0" value="0" />
+                        </div>
+                        <a (click)="aumenta('vis_alb')">
+                            <div class="tratVist_Button">
+                                <span>+</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>   
+
+        </ion-card-content>
+        <ion-card-content>    
+
             <div class="tratVis_Depositos">
                  <h6>Número de Depósitos Tratados:</h6>
             </div>
@@ -111,55 +212,7 @@
                 </div>
             </div>
         </ion-card-content>
-        <ion-card-content>
-            <div class="tratVis_Depositos">
-                 <h6>Consumo de inseticida:</h6>
-            </div>
-            <div class="tratVis_Items">
-                <div class="tratVis_Item">
-                    <div class="tratVis_AreaImage">
-                        <img class="img-responsive" src="assets/img/vistoria/tubo1.png"/>
-                        <span>Amostras</span>
-                    </div>
-                    <div class="tratVis_AreaOpcoes">
-                        <a (click)="diminuir('vis_amostras')">
-                            <div class="tratVist_Button">
-                                <span>-</span>
-                            </div>
-                        </a>
-                        <div class="tratVist_Input">
-                            <input type="text" [(ngModel)]="vistoria.vis_amostras" name="vis_amostras" min="0" value="0" />
-                        </div>
-                        <a (click)="aumenta('vis_amostras')">
-                            <div class="tratVist_Button">
-                                <span>+</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="tratVis_Item">
-                    <div class="tratVis_AreaImage">
-                        <img class="img-responsive" src="assets/img/vistoria/tubo2.png"/>
-                        <span>Frascos</span>
-                    </div>
-                    <div class="tratVis_AreaOpcoes">
-                        <a (click)="diminuir('vis_frascos')">
-                            <div class="tratVist_Button">
-                                <span>-</span>
-                            </div>
-                        </a>
-                        <div class="tratVist_Input">
-                            <input type="text" [(ngModel)]="vistoria.vis_frascos" name="vis_frascos" min="0" value="0" />
-                        </div>
-                        <a (click)="aumenta('vis_frascos')">
-                            <div class="tratVist_Button">
-                                <span>+</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>            
-        </ion-card-content>
+        
 
         <ion-card-content>
             <div class="tratVis_Depositos">
@@ -190,6 +243,228 @@
     </ion-card>
 
     </form>
+
+    <ion-card>
+        <!--<ion-card-content>
+            <div class="tratVis_Depositos">
+                 <h6>Coleta de Amostras:</h6>
+            </div>
+            <div class="tratVis_Items">
+                <div class="tratVis_Item">
+                    <div class="tratVis_AreaImage">
+                        <img class="img-responsive" src="assets/img/vistoria/tubo1.png"/>
+                        <span>Tubos</span>
+                    </div>
+                    <div class="tratVis_AreaOpcoes">
+                        <a>
+                            <div class="tratVist_Button">
+                                <span>-</span>
+                            </div>
+                        </a>
+                        <div class="tratVist_Input">
+                            <input type="number"/>
+                        </div>
+                        <a>
+                            <div class="tratVist_Button">
+                                <span>+</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="tratVis_Item">
+                    <div class="tratVis_AreaImage">
+                        <img class="img-responsive" src="assets/img/vistoria/tubo2.png"/>
+                        <span>Amostras</span>
+                    </div>
+                    <div class="tratVis_AreaOpcoes">
+                        <a>
+                            <div class="tratVist_Button">
+                                <span>-</span>
+                            </div>
+                        </a>
+                        <div class="tratVist_Input">
+                            <input type="number"/>
+                        </div>
+                        <a>
+                            <div class="tratVist_Button">
+                                <span>+</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>            
+        </ion-card-content>
+        <ion-card-content>
+            <div class="tratVis_Depositos">
+                 <h6>Larvas Examinadas:</h6>
+            </div>
+            <div class="tratVis_Items">
+                <div class="tratVis_Item">
+                    <div class="tratVis_AreaImage">
+                        <img class="img-responsive" src="assets/img/vistoria/mosquito1.png"/>
+                        <span>Aegypt</span>
+                    </div>
+                    <div class="tratVis_AreaOpcoes">
+                        <a>
+                            <div class="tratVist_Button">
+                                <span>-</span>
+                            </div>
+                        </a>
+                        <div class="tratVist_Input">
+                            <input type="number"/>
+                        </div>
+                        <a>
+                            <div class="tratVist_Button">
+                                <span>+</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="tratVis_Item">
+                    <div class="tratVis_AreaImage">
+                        <img class="img-responsive" src="assets/img/vistoria/mosquito2.png"/>
+                        <span>Alb.</span>
+                    </div>
+                    <div class="tratVis_AreaOpcoes">
+                        <a>
+                            <div class="tratVist_Button">
+                                <span>-</span>
+                            </div>
+                        </a>
+                        <div class="tratVist_Input">
+                            <input type="number"/>
+                        </div>
+                        <a>
+                            <div class="tratVist_Button">
+                                <span>+</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>            
+        </ion-card-content>
+
+        <ion-card-content>
+            <div class="tratVis_Depositos">
+                 <h6>Depósitos inspecionados:</h6>
+            </div>
+            <div class="tratVis_Items">
+                <div class="tratVis_Item">
+                    <div class="tratVis_AreaImage">
+                        <img class="img-responsive" src="assets/img/vistoria/pneus.png"/>
+                        <span>Pneus</span>
+                    </div>
+                    <div class="tratVis_AreaOpcoes">
+                        <a>
+                            <div class="tratVist_Button">
+                                <span>-</span>
+                            </div>
+                        </a>
+                        <div class="tratVist_Input">
+                            <input type="number"/>
+                        </div>
+                        <a>
+                            <div class="tratVist_Button">
+                                <span>+</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="tratVis_Item">
+                    <div class="tratVis_AreaImage">
+                        <img class="img-responsive" src="assets/img/vistoria/caixa-dagua.png"/>
+                        <span>Caixa D'Agua</span>
+                    </div>
+                    <div class="tratVis_AreaOpcoes">
+                        <a>
+                            <div class="tratVist_Button">
+                                <span>-</span>
+                            </div>
+                        </a>
+                        <div class="tratVist_Input">
+                            <input type="number"/>
+                        </div>
+                        <a>
+                            <div class="tratVist_Button">
+                                <span>+</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>     
+            <div class="tratVis_Items">
+                <div class="tratVis_Item">
+                    <div class="tratVis_AreaImage">
+                        <img class="img-responsive" src="assets/img/vistoria/vaso.png"/>
+                        <span>Vaso</span>
+                    </div>
+                    <div class="tratVis_AreaOpcoes">
+                        <a>
+                            <div class="tratVist_Button">
+                                <span>-</span>
+                            </div>
+                        </a>
+                        <div class="tratVist_Input">
+                            <input type="number"/>
+                        </div>
+                        <a>
+                            <div class="tratVist_Button">
+                                <span>+</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="tratVis_Item">
+                    <div class="tratVis_AreaImage">
+                        <img class="img-responsive" src="assets/img/vistoria/pool.png"/>
+                        <span>Piscina</span>
+                    </div>
+                    <div class="tratVis_AreaOpcoes">
+                        <a>
+                            <div class="tratVist_Button">
+                                <span>-</span>
+                            </div>
+                        </a>
+                        <div class="tratVist_Input">
+                            <input type="number"/>
+                        </div>
+                        <a>
+                            <div class="tratVist_Button">
+                                <span>+</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>          
+        </ion-card-content>
+
+        <ion-card-content>
+            <div class="tratVis_Depositos">
+                 <h6>Observações do Agente:</h6>
+            </div>
+            <div class="tratVis_TextArea">
+                <textarea rows="6" cols="40">
+                </textarea>
+            </div>
+        </ion-card-content>
+
+        <ion-card-content>
+            <div class="tratVis_Item">
+                <a>
+                    <div class="tratVis_Button btnColorGreen">
+                        <span>CONCLUIR</span>
+                    </div>
+                </a>
+            </div>
+            <div class="tratVis_Item">
+                <a>
+                    <div class="tratVis_Button btnColorRed">
+                        <span>NÃO VISTORIADO</span>
+                    </div>
+                </a>
+            </div>
+        </ion-card-content>-->
+    </ion-card> 
 
     <!--<ion-card *ngIf="vistoria.Status" style="background: ghostwhite">
         <ion-card-header >

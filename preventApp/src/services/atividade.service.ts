@@ -20,14 +20,14 @@ export class AtividadeService {
   public requestData(): void {
 
     this._atividadeDAO.getAll().then(data => {
-      if (data.length === 0) {
-        this.requestServerAtividade();
-      }
+      /*if (data.length === 0) {*/
+        this.requestServerAtividade(data);
+      /*}*/
     });
 
   }
 
-   private requestServerAtividade() {
+   private requestServerAtividade(imoveis) {
 
     new Promise(resolve => {
             this._http.get('assets/mock/atividades.json')
@@ -36,14 +36,31 @@ export class AtividadeService {
 
       let atividades: IAtividade[];
       atividades = <IAtividade[]>data;
-      
+
       for (var atividade of atividades)
       {
-         this._atividadeDAO.add(atividade);
+        if (!this.atividadeExists(imoveis, atividade["Codigo"]))
+        {
+          this._atividadeDAO.add(atividade);
+        }         
       }
 
     });
 
+  }
+
+  private atividadeExists(data, id)
+  {
+      for (var d of data)
+      {
+         if (d["Codigo"] === id)
+         { 
+            return true;
+         }
+      }
+
+      return false;
+      
   }
 
 }

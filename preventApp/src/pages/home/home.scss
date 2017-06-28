@@ -8,6 +8,15 @@
     font-weight: bold;
 }
 
+.toolbar-title-md {
+    color: #fff;
+    font-weight: 100;
+}
+
+ion-app.md [padding] .scroll-content {
+    padding: 0px;
+}
+
 .toolbar-background-md {
     background: rgb(99, 214, 199);
 }
@@ -31,18 +40,53 @@
     text-align: center;
 }
 
+.card-image:hover {
+    background: #000;
+    cursor: pointer;
+}
+
+.card-image img:hover {
+    opacity: 0.9;
+}
+
+.card-image img:active {
+    opacity: 0.4;
+}
+
+.areaButton {
+    top: 13px;
+    position: absolute;
+    right: 13px;
+    color: darkblue;
+}
+
+.areaButton:hover {
+    color: #000;
+}
+
+.areaButton:active{
+    color: #000;
+    background: purple;
+    border-radius: 10px;
+}
+
 .card-content h3, [padding] h3:first-child { 
     position: relative;
-    font-size: 22pt;
+    font-size: 13pt;
     font-family: LatoRegular;
     color: #fff;
     text-shadow: -1px solid #000;
-    text-shadow: 1px 1px 1px rgba(150, 150, 150, 1);
+    text-shadow: 1px 1px 1px #969696;
     width: 238px;
     float: left;
-    margin-top: -50%;
+    margin-top: -50px;
     width: 100%;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    padding: 5PX 0PX;
+    letter-spacing: 1px;
+    z-index: 9999;
+    position: absolute;
 }
 
 .card-content h5 { 

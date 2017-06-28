@@ -5,11 +5,12 @@ import { IBairro } from '../models/bairro.model';
 @Injectable()
 export class BairroDAO {
     private _db;
-    private _bairros;
+    public _bairros;
 
     initDB() {
         window["PouchDB"] = PouchDB;
         this._db = new PouchDB('bairro', { adapter: 'websql' });
+        this._bairros = this.getAll();
     }
 
     add(bairro) {

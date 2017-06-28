@@ -7,10 +7,12 @@ import { LoginPage } from '../pages/login/login';
 import { PesquisaLarvarialPage } from '../pages/pesquisaLarvarial/pesquisaLarvarial';
 import { CadastroImoveisPage } from '../pages/cadastroImoveis/cadastroImoveis';
 import { TratamentoVetorialPage } from '../pages/tratamentoVetorial/tratamentoVetorial';
+import { VistoriaPesquisaPage } from '../pages/vistoriaPesquisa/vistoriaPesquisa';
 import { VistoriaPage } from '../pages/vistoria/vistoria';
 import { AuthService } from '../services/auth.service';
 import { SyncService } from '../services/sync.service';
 import { RegiaoService } from '../services/regiao.service';
+import { PlanejamentoService } from '../services/planejamento.service';
 import { BairroService } from '../services/bairro.service';
 import { ImovelService } from '../services/imoveis.service';
 import { AtividadeService } from '../services/atividade.service';
@@ -21,6 +23,7 @@ import { BairroDAO } from '../dao/bairro.dao';
 import { ImovelDAO } from '../dao/imoveis.dao';
 import { AtividadeDAO } from '../dao/atividade.dao';
 import { VistoriaDAO } from '../dao/vistoria.dao';
+import { PlanejamentoDAO } from '../dao/planejamento.dao';
 import { QRCodeModule } from 'angular2-qrcode';
 
 @NgModule({
@@ -32,7 +35,8 @@ import { QRCodeModule } from 'angular2-qrcode';
     PesquisaLarvarialPage,
     CadastroImoveisPage,
     TratamentoVetorialPage,
-    VistoriaPage    
+    VistoriaPage,
+    VistoriaPesquisaPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -47,8 +51,9 @@ import { QRCodeModule } from 'angular2-qrcode';
     PesquisaLarvarialPage,
     CadastroImoveisPage,
     TratamentoVetorialPage,
-    VistoriaPage
+    VistoriaPage,
+    VistoriaPesquisaPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, UserDAO, RegiaoDAO, BairroDAO, SyncService, RegiaoService, BairroService, ImovelService, VistoriaService, ImovelDAO, AtividadeService, AtividadeDAO, VistoriaDAO]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, AuthService, UserDAO, RegiaoDAO, BairroDAO, SyncService, RegiaoService, BairroService, ImovelService, VistoriaService, ImovelDAO, AtividadeService, AtividadeDAO, VistoriaDAO, PlanejamentoService, PlanejamentoDAO]
 })
 export class AppModule {}

@@ -1,29 +1,146 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Menu</ion-title>
+        <ion-title>PESQUISA LARVARIAL</ion-title>
     </ion-navbar>
 </ion-header>
 
+
 <ion-content>
-        <div class="dashboard teste">
-            <div class="titulo">Casa 10</div>
+    <div class="dashboard tratamentoVetorial">
+        <div class="home-header">
+            <i class="icon ion-android-calendar"></i>            
         </div>
-        <form id="cadastroImoveis-form3" class="list">
-            <label class="item item-input item-stacked-label" id="cadastroImoveis-input4" name="regiao">
-                <span class="input-label">Quantidade de focos</span>
-                <input placeholder="10" type="number" id="testecampo1" name="testecampo1" ng-model="form.campo1">
-            </label>
-            <label class="item item-input item-stacked-label" id="cadastroImoveis-input5" name="bairro">
-                <span class="input-label">Numeros de Insumos usados</span>
-                <input placeholder="10" type="number" id="testecampo2" name="testecampo2" ng-model="form.campo2">
-            </label>            
-        
-        <div class="spacer" style="width: 283px; height: 53px;"></div>        
-        
-        <div id="cadastroImoveis-button-bar2" class="button-bar" >
-            <button type='submit' id="cadastroImoveis-button9" class="button button-balanced  button-block button-outline icon ion-android-checkmark-circle" ng-click="rest(form)" >Salvar</button>
-            <a ui-sref="menu2" id="cadastroImoveis-button10" class="button button-energized  button-block button-outline icon ion-eye-disabled">Cancelar</a>
-        </div>
-        </form>
-        <!--<button id="b" name="b" ng-click="t('ASD123')">asd</button>-->
+    </div>
+
+    <div *ngFor="let i of vistoriaImoveis">
+        <ion-card>
+            <ion-row>
+                <ion-col>
+                    <div class="tratVet_AreaMarker">
+                        <img class="img-responsive" src="assets/img/acoes/marker.png"/>
+                    </div>
+                    <div class="tratVet_AreaInfoContato">
+                        <div class="tratVet_AreaContato">
+                            <span>
+                                Contato: {{ i.imovel.imovNomeContato }}
+                            </span>
+                        </div>
+                        <div *ngIf="!i.vistoria" class="tratVet_AreaStatus tratVet_AreaStatusAlert">
+                            <ion-icon name="checkbox-outline"></ion-icon>
+                        </div>
+                        <div *ngIf="i.vistoria" class="tratVet_AreaStatus tratVet_AreaStatusOk">
+                            <ion-icon name="checkbox-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="tratVet_AreaEndereco">
+                        <span>
+                            {{ i.imovel.imovLogradouro }}, N {{ i.imovel.imovNumero }} - {{ i.bairro.bairNome }}
+                        </span>
+                    </div>
+                    <div *ngIf="i.vistoria" class="tratVet_AreaStatusEndereco">
+                        <span *ngIf="i.vistoria.vis_status === 'realizada'">
+                            Status - Realizada
+                        </span>
+                        <span *ngIf="i.vistoria.vis_status === 'naorealizada'">
+                            Status - Não Teve Atendimento
+                        </span>
+                    </div>
+                    <div *ngIf="!i.vistoria" class="tratVet_AreaStatusEndereco ">
+                        <span class="tratVet_Alert">
+                            Status - Não Vistoriado
+                        </span>
+                    </div>
+                    <div class="tratVet_AreaButton" (click)="goToVistoria(i.imovel._id)">
+                        <span>
+                            Analisar
+                        </span>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+    </div>
+
+    <!--<div>
+        <ion-card>
+            <ion-row>
+                <ion-col>
+                    <div class="tratVet_AreaMarker">
+                        <img class="img-responsive" src="assets/img/acoes/marker.png"/>
+                    </div>
+                    <div class="tratVet_AreaInfoContato">
+                        <div class="tratVet_AreaContato">
+                            <span>
+                                Contato: Marcelo Macedo
+                            </span>
+                        </div>
+                        <div class="tratVet_AreaStatus">
+                            <ion-icon name="checkbox-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="tratVet_AreaEndereco">
+                        <span>
+                            Avenida General Sales dos Santos Silva, N 1050 - Centro Vila Narcisa
+                        </span>
+                    </div>
+                    <div class="tratVet_AreaStatusEndereco">
+                        <span>
+                            Status - Vistoriado
+                        </span>
+                    </div>
+                    <div class="tratVet_AreaButton">
+                        <span>
+                            Analisar
+                        </span>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+    </div>
+
+    <div>
+        <ion-card>
+            <ion-row>
+                <ion-col>
+                    <div class="tratVet_AreaMarker">
+                        <img class="img-responsive" src="assets/img/acoes/marker.png"/>
+                    </div>
+                    <div class="tratVet_AreaInfoContato">
+                        <div class="tratVet_AreaContato">
+                            <span>
+                                Contato: Marcelo Macedo
+                            </span>
+                        </div>
+                        <div class="tratVet_AreaStatus">
+                            <ion-icon name="checkbox-outline"></ion-icon>
+                        </div>
+                    </div>
+                    <div class="tratVet_AreaEndereco">
+                        <span>
+                            Avenida General Sales dos Santos Silva, N 1050 - Centro Vila Narcisa
+                        </span>
+                    </div>
+                    <div class="tratVet_AreaStatusEndereco">
+                        <span>
+                            Status - Vistoriado
+                        </span>
+                    </div>
+                    <div class="tratVet_AreaButton">
+                        <span>
+                            Analisar
+                        </span>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+    </div> -->
+
+
+    <ion-fab right bottom>
+        <button ion-fab color="secondary"><ion-icon name="add"></ion-icon></button>
+        <ion-fab-list side="left">
+            <button ion-fab (click)="escanearCodigo()"><ion-icon name="qr-scanner"></ion-icon></button>
+        </ion-fab-list>
+    </ion-fab>
+
+
 </ion-content>

@@ -1,9 +1,11 @@
 import {Component, Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {Http, Response, Headers} from '@angular/http';
+import { NavController, NavParams } from 'ionic-angular';
 import {IUser} from '../models/user.model';
 import {AuthDao} from '../dao/auth.dao';
 import {UserDAO} from '../dao/user.dao';
 import {Observable} from 'rxjs/Observable';
+import { HomePage } from '../pages/home/home';
 
 @Component({
   providers: [AuthDao]
@@ -12,61 +14,108 @@ export class AuthService {
 
   private _user: IUser;
 
-  constructor(private _http: Http, private _authDao: AuthDao, private _userDAO: UserDAO) {
+  constructor(private _http: Http, public navCtrl: NavController,  private _authDao: AuthDao, private _userDAO: UserDAO) {
       this._userDAO.initDB();
   }
 
-  public authUser(user: IUser): Boolean {
+  public authUser(user: IUser): String {
 
     this._user = user;
 
     var token = this.requestUserToken();
 
-    if (token === null)
-      return false;
-    else
-      return true;
+    return token;
   }
 
-  private requestUserToken(): string {
+  private requestUserToken(): String {
     
     var result = this.CheckDatabase();
 
-    return "token";/*
-
-    if (result === null){
-
-      this._authDao.create(this._user);
-
-       var teste = this._authDao.get();
-
-      return "teste";
-    }
+    console.log(result);
     
-    if (this._user.token === null) {
-      var user = this.RequestServerUser();
+    if (result === null)
+    {
+        return this.RequestServerUser();        
+    }
+    else
+    {
+      return result;
+    }
 
-      this._authDao.create(user);
-
-      return "user";
-    }    
-
-    return this._user.token;*/
+    
   }
 
-  private CheckDatabase(): IUser {
-    return this._userDAO.get(this._user.username, this._user.password);
+  private CheckDatabase(): String {
+    var usuarios = this._userDAO._users.filter(r=> r.usuLogin == this._user.usuLogin && r.usuSenha == this._user.usuSenha);
+
+    console.log(usuarios);
+
+    if (usuarios.length > 0){
+        return usuarios[0].token;
+    }
+    else
+    {
+      return null;
+    }
   }
 
-  private RequestServerUser(): IUser {
+  private RequestServerUser(): String {
 
     let user: IUser;
 
-    this._http.get('mock/userAuth.json')
-      .map((response: Response) => user = <IUser>JSON.parse(response.json()));
-    ;
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Access-Control-Allow-Origin','*');
+    headers.append('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
 
-    return user;
+    var data = "{ \"usuLogin\": \"" + this._user.usuLogin + "\", \"usuSenha\":\"" + this._user.usuSenha + "\" }";
+
+    this._http.post('http://52.45.198.8:8080/dengueprevent/api/gerarToken', data, {headers: headers})
+      .subscribe(data => {
+              var d = data.json(); 
+
+              console.log("aqui");   
+              console.log(d);
+
+              if (d.hasOwnProperty('token')){
+
+                if (d["token"] !== null)
+                {
+                   console.log(d["token"]);
+
+                    var usuario: IUser = {
+                        id: 0,
+                        usuLogin: this._user.usuLogin,
+                        usuSenha: this._user.usuSenha,
+                        token: d["token"]
+                    };
+
+                    this._userDAO.add(usuario);
+
+                    if (d["token"] !== null)
+                    {
+                      this.navCtrl.push(HomePage, {
+                          token: d["token"]
+                      });
+                    }
+
+                    return d["token"];
+                }
+                
+              } 
+
+              if (d.hasOwnProperty('erro')){
+                alert(d["erro"]);
+              }
+
+              return false;
+              
+          }, error => {
+              alert("Não foi possível realizar o login")
+              console.log(error.json());
+          });
+    ;
+    return null;
   }
 
 

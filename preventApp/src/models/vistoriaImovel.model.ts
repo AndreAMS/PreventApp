@@ -4,4 +4,5 @@ export class IVistoriaImovel {
 
     vistoria: any;
     imovel: any;
+    bairro: any;
 }

@@ -40,10 +40,8 @@ export class CadastroImoveisPage {
         });
 
         loader.present().then(() => {
-            this.regiaoDAO.getAll().then(data => {
-                this.regioes = data;
-                loader.dismiss();
-            });
+            this.regioes = this.regiaoDAO._regioes;
+            loader.dismiss();
         });
     }
 
@@ -55,23 +53,19 @@ export class CadastroImoveisPage {
         });
 
         loader.present().then(() => {
-            this.bairroDAO.getByRegion(id).then(data => {
-                this.bairros = data;
-                loader.dismiss();
-            });
+            this.bairros = this.bairroDAO._bairros.filter(r=> r.regCodigo === id);
+            loader.dismiss();
         });
 
     }
 
     cadastrar() {
         var i = <IImovel>this.imovel;
-        i.Codigo = UUID.UUID();  
+        i.etiqIdentificacao = this.codigo;
 
         if (this.codigo == null)
-            i.BarcodeData = this.codigoManual;
-        else
-            i.BarcodeData = this.codigo;            
-        
+            i.etiqIdentificacao = this.codigoManual;
+
         this.imovelDAO.add(i);
         
         this.navCtrl.push(HomePage);

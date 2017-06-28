@@ -1,20 +1,33 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Menu</ion-title>
+        <ion-title>ATIVIDADES DO DIA</ion-title>
+        <div class="areaButton" (click)="atualizar()">
+            <ion-icon name="refresh"></ion-icon>
+        </div>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding class="card-background-page">
     <div class="home-header">
-        <h3>Atividades Disponíveis</h3>
+        
+        <h3>Atividades Disponíveis</h3>        
     </div>
 
-    <ion-card *ngFor="let a of atividades">
-        <div class="card-image" (click)="goToTratamentoVetorial(a.Codigo, a.BairroId)">
-            <img class="img-responsive" src="assets/img/home/tratamentoVetorial.png" />
-            <div class="card-content">
-                <h3>{{ a.Nome }}</h3>
-                <h5>{{ a.Data }}</h5>
+    <ion-card *ngFor="let p of planejamento">
+        <div *ngIf="p.tipat_nome === 'Tratamento Anti-Vetorial'">
+            <div class="card-image" (click)="goToTratamentoVetorial(1)">
+                <img class="img-responsive" src="assets/img/home/tratamentoVetorial.png" />
+                <div class="card-content">
+                    <h3>{{ p.tipat_nome }}</h3>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="p.tipat_nome === 'Pesquisa Larvária'">
+            <div class="card-image" (click)="goToPesquisaLarvarial(1)">
+                <img class="img-responsive" src="assets/img/home/pesquisaLarvaria.png" />
+                <div class="card-content">
+                    <h3>{{ p.tipat_nome }}</h3>
+                </div>
             </div>
         </div>
     </ion-card>
@@ -23,7 +36,7 @@
         <div class="card-image">
             <img class="img-responsive" src="assets/img/home/cadastroImoveis.png" />
             <div class="card-content">
-                <h3>Cadastro de Imóveis</h3>
+                <h3>Cadastrar Imóveis</h3>
             </div>
         </div>
     </ion-card>

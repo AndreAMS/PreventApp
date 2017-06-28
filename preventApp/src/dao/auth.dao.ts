@@ -63,7 +63,7 @@ export class AuthDao {
   public create(_user: IUser): IUser {
 
     this.db.transaction(tr => { 
-      tr.executeSql("INSERT INTO people (username, token) VALUES (?, ?)", [_user.username, "teste"]); })
+      tr.executeSql("INSERT INTO people (username, token) VALUES (?, ?)", [_user.usuLogin, "teste"]); })
         .then(d => { console.log('Data inserted ya hima'); }, err => { console.error(err); });
 
       return null;
